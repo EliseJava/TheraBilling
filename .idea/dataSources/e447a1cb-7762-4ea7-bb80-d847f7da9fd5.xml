@@ -921,5 +921,61 @@
       <Charset>utf8mb4</Charset>
       <DefaultForCharset>0</DefaultForCharset>
     </collation>
+    <table id="233" parent="9" name="patient">
+      <Comment>This table contains patient information </Comment>
+      <Engine>InnoDB</Engine>
+    </table>
+    <column id="234" parent="233" name="patient_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="235" parent="233" name="first_name">
+      <Position>2</Position>
+      <DataType>varchar(25)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="236" parent="233" name="last_name">
+      <Position>3</Position>
+      <DataType>varchar(25)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="237" parent="233" name="diagnosis">
+      <Position>4</Position>
+      <DataType>varchar(30)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="238" parent="233" name="referred_by">
+      <Position>5</Position>
+      <DataType>varchar(25)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="239" parent="233" name="street_name">
+      <Position>6</Position>
+      <DataType>varchar(25)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="240" parent="233" name="city">
+      <Position>7</Position>
+      <DataType>varchar(25)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="241" parent="233" name="state">
+      <Position>8</Position>
+      <DataType>varchar(30)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="242" parent="233" name="postal_code">
+      <Position>9</Position>
+      <DataType>int(6)|0</DataType>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <key id="243" parent="233" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>patient_id</ColNames>
+      <Primary>1</Primary>
+    </key>
   </database-model>
 </dataSource>

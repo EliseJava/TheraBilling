@@ -32,6 +32,7 @@ public class PatientDao {
         Session session = sessionFactory.openSession();
         Patient patient = session.get(Patient.class, id);
         session.close();
+        logger.info("patient", patient.getFirstName());
         return patient;
     }
 
@@ -41,7 +42,7 @@ public class PatientDao {
      * @param lastName the last name
      * @return the users
      */
-    public List<Patient> getPatients(String lastName) {
+    public List<Patient> getAllPatients(String lastName) {
 
         logger.debug("lastname {}", lastName);
 
