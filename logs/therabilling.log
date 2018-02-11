@@ -1,0 +1,29 @@
+[ERROR] 2018-02-11 14:32:19.464 [main] Database - java.sql.SQLException: Can not issue empty query.
+[ERROR] 2018-02-11 14:33:40.978 [main] Database - java.sql.SQLException: Can not issue empty query.
+[ERROR] 2018-02-11 14:34:07.050 [main] Database - java.sql.SQLException: Can not issue empty query.
+[INFO ] 2018-02-11 14:34:07.251 [main] PatientDao - patient Patient {First Name ='Calvinator', Last Name ='Prinsloo', Diagnosis ='iliotibial band syndrome', Referred by='Dr. Venter', Street Name ='415 North Ridge Drive', City        ='Waunakee', State       ='WI', Postal Code ='53597'}
+[ERROR] 2018-02-11 14:37:16.898 [main] Database - java.sql.SQLException: Can not issue empty query.
+[INFO ] 2018-02-11 14:37:17.102 [main] PatientDao - patient Patient {First Name ='Calvinator', Last Name ='Prinsloo', Diagnosis ='iliotibial band syndrome', Referred by='Dr. Venter', Street Name ='415 North Ridge Drive', City        ='Waunakee', State       ='WI', Postal Code ='53597'}
+[INFO ] 2018-02-11 14:37:17.113 [main] PatientDaoTest - name should be updated Calvin
+[ERROR] 2018-02-11 14:38:57.000 [main] Database - java.sql.SQLException: Can not issue empty query.
+[INFO ] 2018-02-11 14:38:57.254 [main] PatientDao - patient Patient {First Name ='Calvinator', Last Name ='Prinsloo', Diagnosis ='iliotibial band syndrome', Referred by='Dr. Venter', Street Name ='415 North Ridge Drive', City        ='Waunakee', State       ='WI', Postal Code ='53597'}
+[INFO ] 2018-02-11 14:38:57.285 [main] PatientDaoTest - name should be updated Calvin
+[ERROR] 2018-02-11 15:03:39.508 [main] Database - java.sql.SQLException: Can not issue empty query.
+[INFO ] 2018-02-11 15:03:39.781 [main] PatientDao - patient Patient {First Name ='Calvinator', Last Name ='Prinsloo', Diagnosis ='iliotibial band syndrome', Referred by='Dr. Venter', Street Name ='415 North Ridge Drive', City        ='Waunakee', State       ='WI', Postal Code ='53597'}
+[INFO ] 2018-02-11 15:03:39.795 [main] PatientDaoTest - name should be updated Calvin
+[ERROR] 2018-02-11 15:04:36.739 [main] Database - java.sql.SQLException: Can not issue empty query.
+[ERROR] 2018-02-11 15:04:37.024 [main] Database - java.sql.SQLException: Can not issue empty query.
+[ERROR] 2018-02-11 15:04:37.293 [main] Database - java.sql.SQLException: Can not issue empty query.
+[INFO ] 2018-02-11 15:04:37.300 [main] PatientDao - patient Patient {First Name ='Calvinator', Last Name ='Prinsloo', Diagnosis ='iliotibial band syndrome', Referred by='Dr. Venter', Street Name ='415 North Ridge Drive', City        ='Waunakee', State       ='WI', Postal Code ='53597'}
+[INFO ] 2018-02-11 15:04:37.312 [main] PatientDaoTest - name should be updated Calvin
+[ERROR] 2018-02-11 15:04:37.356 [main] Database - java.sql.SQLException: Can not issue empty query.
+[ERROR] 2018-02-11 15:04:37.398 [main] Database - java.sql.SQLException: Can not issue empty query.
+[ERROR] 2018-02-11 15:04:37.425 [main] Database - java.sql.SQLException: Can not issue empty query.
+[ERROR] 2018-02-11 15:04:50.073 [main] Database - java.sql.SQLException: Can not issue empty query.
+[ERROR] 2018-02-11 15:04:50.321 [main] Database - java.sql.SQLException: Can not issue empty query.
+[ERROR] 2018-02-11 15:04:50.722 [main] Database - java.sql.SQLException: Can not issue empty query.
+[INFO ] 2018-02-11 15:04:50.725 [main] PatientDao - patient Patient {First Name ='Calvinator', Last Name ='Prinsloo', Diagnosis ='iliotibial band syndrome', Referred by='Dr. Venter', Street Name ='415 North Ridge Drive', City        ='Waunakee', State       ='WI', Postal Code ='53597'}
+[INFO ] 2018-02-11 15:04:50.726 [main] PatientDaoTest - name should be updated Calvin
+[ERROR] 2018-02-11 15:04:50.773 [main] Database - java.sql.SQLException: Can not issue empty query.
+[ERROR] 2018-02-11 15:04:50.804 [main] Database - java.sql.SQLException: Can not issue empty query.
+[ERROR] 2018-02-11 15:04:50.857 [main] Database - java.sql.SQLException: Can not issue empty query.

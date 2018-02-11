@@ -13,7 +13,7 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 /**
- * The type User dao.
+ * The type Patient dao.
  */
 public class PatientDao {
 
@@ -32,15 +32,16 @@ public class PatientDao {
         Session session = sessionFactory.openSession();
         Patient patient = session.get(Patient.class, id);
         session.close();
-        logger.info("patient", patient.getFirstName());
         return patient;
     }
 
     /**
-     * Gets patients.
+     * Get patient(s) by last name or start of last name.
+     * OR
+     * Get all patients if no last name provided
      *
      * @param lastName the last name
-     * @return the users
+     * @return the patients
      */
     public List<Patient> getAllPatients(String lastName) {
 
@@ -54,10 +55,48 @@ public class PatientDao {
             Expression<String> propertyPath = root.get("lastName");
             query.where(builder.like(propertyPath, lastName + "%"));
         }
-
-        List<Patient> users = session.createQuery(query).getResultList();
+        List<Patient> patients = session.createQuery(query).getResultList();
         session.close();
 
-        return users;
+        return patients;
+    }
+
+    /**
+     * update/save patient
+     * @param patient  Patient to be inserted or updated
+     */
+    public void saveOrUpdate(Patient patient) {
+
+        logger.info("patient {}", patient);
+
+        Session session = sessionFactory.openSession();
+        session.saveOrUpdate(patient);
+        session.close();
+    }
+
+    /**
+     * update patient
+     * @param patient  the patient to be inserted or updated
+     */
+    public int insert(Patient patient) {
+        int id = 0;
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        id = (int)session.save(patient);
+        transaction.commit();
+        session.close();
+        return id;
+    }
+
+    /**
+     * Delete a patient
+     * @param patient Patient to be deleted
+     */
+    public void delete(Patient patient) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.delete(patient);
+        transaction.commit();
+        session.close();
     }
 }

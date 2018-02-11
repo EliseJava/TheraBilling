@@ -1,2 +1,32 @@
-[ERROR] 2018-02-10 16:54:57.362 [main] SqlExceptionHelper - Table 'sample.patient' doesn't exist
-[ERROR] 2018-02-10 16:57:00.525 [main] SqlExceptionHelper - Table 'sample.patient' doesn't exist
+[INFO ] 2018-02-11 14:32:16.949 [main] Version - HHH000412: Hibernate Core {5.2.12.Final}
+[INFO ] 2018-02-11 14:32:16.960 [main] Environment - HHH000206: hibernate.properties not found
+[INFO ] 2018-02-11 14:32:17.489 [main] Version - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[INFO ] 2018-02-11 14:32:17.629 [main] C3P0ConnectionProvider - HHH010002: C3P0 using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost:3306/test_therabilling
+[INFO ] 2018-02-11 14:32:17.629 [main] C3P0ConnectionProvider - HHH10001001: Connection properties: {user=root, password=****}
+[INFO ] 2018-02-11 14:32:17.629 [main] C3P0ConnectionProvider - HHH10001003: Autocommit mode: false
+[INFO ] 2018-02-11 14:32:17.961 [main] C3P0ConnectionProvider - HHH10001007: JDBC isolation level: <unknown>
+[INFO ] 2018-02-11 14:32:18.331 [main] Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+[INFO ] 2018-02-11 14:33:38.782 [main] Version - HHH000412: Hibernate Core {5.2.12.Final}
+[INFO ] 2018-02-11 14:33:38.796 [main] Environment - HHH000206: hibernate.properties not found
+[INFO ] 2018-02-11 14:33:39.284 [main] Version - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[INFO ] 2018-02-11 14:33:39.424 [main] C3P0ConnectionProvider - HHH010002: C3P0 using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost:3306/test_therabilling
+[INFO ] 2018-02-11 14:33:39.424 [main] C3P0ConnectionProvider - HHH10001001: Connection properties: {user=root, password=****}
+[INFO ] 2018-02-11 14:33:39.424 [main] C3P0ConnectionProvider - HHH10001003: Autocommit mode: false
+[INFO ] 2018-02-11 14:33:39.725 [main] C3P0ConnectionProvider - HHH10001007: JDBC isolation level: <unknown>
+[INFO ] 2018-02-11 14:33:40.157 [main] Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+[INFO ] 2018-02-11 14:34:04.290 [main] Version - HHH000412: Hibernate Core {5.2.12.Final}
+[INFO ] 2018-02-11 14:34:04.311 [main] Environment - HHH000206: hibernate.properties not found
+[INFO ] 2018-02-11 14:34:04.966 [main] Version - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[INFO ] 2018-02-11 14:34:05.395 [main] C3P0ConnectionProvider - HHH010002: C3P0 using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost:3306/test_therabilling
+[INFO ] 2018-02-11 14:34:05.395 [main] C3P0ConnectionProvider - HHH10001001: Connection properties: {user=root, password=****}
+[INFO ] 2018-02-11 14:34:05.395 [main] C3P0ConnectionProvider - HHH10001003: Autocommit mode: false
+[INFO ] 2018-02-11 14:34:05.886 [main] C3P0ConnectionProvider - HHH10001007: JDBC isolation level: <unknown>
+[INFO ] 2018-02-11 14:34:06.264 [main] Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+[INFO ] 2018-02-11 14:37:14.314 [main] Version - HHH000412: Hibernate Core {5.2.12.Final}
+[INFO ] 2018-02-11 14:37:14.314 [main] Environment - HHH000206: hibernate.properties not found
+[INFO ] 2018-02-11 14:37:15.003 [main] Version - HCANN000001: Hibernate Commons Annotations {5.0.1.Final}
+[INFO ] 2018-02-11 14:37:15.324 [main] C3P0ConnectionProvider - HHH010002: C3P0 using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost:3306/test_therabilling
+[INFO ] 2018-02-11 14:37:15.324 [main] C3P0ConnectionProvider - HHH10001001: Connection properties: {user=root, password=****}
+[INFO ] 2018-02-11 14:37:15.324 [main] C3P0ConnectionProvider - HHH10001003: Autocommit mode: false
+[INFO ] 2018-02-11 14:37:15.636 [main] C3P0ConnectionProvider - HHH10001007: JDBC isolation level: <unknown>
+[INFO ] 2018-02-11 14:37:16.035 [main] Dialect - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect

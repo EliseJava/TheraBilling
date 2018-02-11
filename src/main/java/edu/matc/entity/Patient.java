@@ -25,17 +25,32 @@ public class Patient {
     @Column(name = "state")
     private String state;
     @Column(name = "postal_code")
-    private String postalCode;
+    private int postalCode;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name ="native", strategy = "native")
+    @Column(name = "patient_id")
     private int patientId;
 
     /**
      * Contructor: Instantiates a new Patient.
      */
     public Patient() {
+    }
+
+    /**
+     * Contructor2: Create a new Patient with values.
+     */
+    public Patient(String firstName, String lastName, String diagnosis, String referredBy, String streetName, String city, String state, int postalCode) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.diagnosis = diagnosis;
+        this.referredBy = referredBy;
+        this.streetName = streetName;
+        this.city = city;
+        this.state = state;
+        this.postalCode = postalCode;
     }
 
     /**
@@ -169,7 +184,7 @@ public class Patient {
      *
      * @return the postal code
      */
-    public String getPostalCode() {
+    public int getPostalCode() {
         return postalCode;
     }
 
@@ -178,7 +193,7 @@ public class Patient {
      *
      * @param postalCode the postal code
      */
-    public void setPostalCode(String postalCode) {
+    public void setPostalCode(int postalCode) {
         this.postalCode = postalCode;
     }
 
@@ -202,7 +217,7 @@ public class Patient {
 
     @Override
     public String toString() {
-        return "User {" +
+        return "Patient {" +
                 "First Name ='" + firstName + '\'' +
                 ", Last Name ='" + lastName + '\'' +
                 ", Diagnosis ='" + diagnosis + '\'' +
