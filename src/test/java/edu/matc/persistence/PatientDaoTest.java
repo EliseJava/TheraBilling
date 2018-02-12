@@ -16,17 +16,18 @@ import static org.junit.jupiter.api.Assertions.*;
 class PatientDaoTest {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
+
     /**
      * The patient dao.
      */
     PatientDao patientDao;
+
 
     /**
      * Sets up. Run sql to recreate the database before each test
      */
     @BeforeEach
     void setUp() {
-
         patientDao = new PatientDao();
         Database database = Database.getInstance();
         database.runSQL("cleanpatientdb.sql");

@@ -27,3 +27,11 @@
 [ERROR] 2018-02-11 15:04:50.773 [main] Database - java.sql.SQLException: Can not issue empty query.
 [ERROR] 2018-02-11 15:04:50.804 [main] Database - java.sql.SQLException: Can not issue empty query.
 [ERROR] 2018-02-11 15:04:50.857 [main] Database - java.sql.SQLException: Can not issue empty query.
+[ERROR] 2018-02-12 16:41:56.881 [main] Database - java.sql.SQLException: Can not issue empty query.
+[ERROR] 2018-02-12 16:41:57.119 [main] Database - java.sql.SQLException: Can not issue empty query.
+[ERROR] 2018-02-12 16:41:57.391 [main] Database - java.sql.SQLException: Can not issue empty query.
+[INFO ] 2018-02-12 16:41:57.395 [main] PatientDao - patient Patient {First Name ='Calvinator', Last Name ='Prinsloo', Diagnosis ='iliotibial band syndrome', Referred by='Dr. Venter', Street Name ='415 North Ridge Drive', City        ='Waunakee', State       ='WI', Postal Code ='53597'}
+[INFO ] 2018-02-12 16:41:57.446 [main] PatientDaoTest - name should be updated Calvinator
+[ERROR] 2018-02-12 16:41:57.474 [main] Database - java.sql.SQLException: Can not issue empty query.
+[ERROR] 2018-02-12 16:41:57.543 [main] Database - java.sql.SQLException: Can not issue empty query.
+[ERROR] 2018-02-12 16:41:57.597 [main] Database - java.sql.SQLException: Can not issue empty query.

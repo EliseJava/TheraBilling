@@ -28,7 +28,6 @@ public class PatientDao {
      * Get patient by id
      */
     public Patient getPatientById(int id) {
-
         Session session = sessionFactory.openSession();
         Patient patient = session.get(Patient.class, id);
         session.close();
@@ -70,7 +69,9 @@ public class PatientDao {
         logger.info("patient {}", patient);
 
         Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
         session.saveOrUpdate(patient);
+        transaction.commit();
         session.close();
     }
 
