@@ -42,8 +42,8 @@ public class Patient {
     @Column(name = "postal_code")
     private int postalCode;
 
-    //@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    //private Set<PatientProcedures> treatmentPlan = new HashSet<>();
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private Set<PatientProcedures> yyyy = new HashSet<>();
 
     /**
      * Empty Contructor: Instantiates a new Patient.
