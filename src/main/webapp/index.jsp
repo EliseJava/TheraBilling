@@ -1,5 +1,13 @@
+<%@taglib prefix="es" uri="http://matc.edu/tags"%>
 <html>
 <body>
-<h2>Hello World!</h2>
+
+<form>
+    <fieldset>
+        <legend>Custom Tag</legend>
+        <h2><es:Hello/></h2>
+    </fieldset>
+</form>
+
 </body>
 </html>

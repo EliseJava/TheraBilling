@@ -61,6 +61,27 @@ public class PatientDao {
     }
 
     /**
+     * Get Patient by property (like)
+     * sample usage: getByPropertyLike("lastname", "C")
+     */
+    public List<Patient> getPatientByPropertyLike(String propertyName, String value) {
+        Session session = sessionFactory.openSession();
+
+        logger.debug("Searching for Patient with {} = {}",  propertyName, value);
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Patient> query = builder.createQuery( Patient.class );
+        Root<Patient> root = query.from( Patient.class );
+        Expression<String> propertyPath = root.get(propertyName);
+
+        query.where(builder.like(propertyPath, "%" + value + "%"));
+
+        List<Patient> Patients = session.createQuery( query ).getResultList();
+        session.close();
+        return Patients;
+    }
+
+    /**
      * update/save patient
      * @param patient  Patient to be inserted or updated
      */
@@ -100,4 +121,6 @@ public class PatientDao {
         transaction.commit();
         session.close();
     }
+
+
 }

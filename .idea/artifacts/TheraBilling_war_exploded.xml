@@ -25,6 +25,7 @@
           <element id="library" level="project" name="Maven: com.mchange:mchange-commons-java:0.2.11" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:5.1.39" />
           <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
+          <element id="library" level="project" name="Maven: TagProject:Tags:1.0-SNAPSHOT" />
         </element>
       </element>
       <element id="directory" name="META-INF">

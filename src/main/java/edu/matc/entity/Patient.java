@@ -3,6 +3,8 @@ package edu.matc.entity;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * The type Patient.
@@ -10,31 +12,41 @@ import javax.persistence.*;
 @Entity(name = "Patient")
 @Table(name = "patient")
 public class Patient {
-    @Column(name = "first_name")
-    private String firstName;
-    @Column(name = "last_name")
-    private String lastName;
-    @Column(name = "diagnosis")
-    private String diagnosis;
-    @Column(name = "referred_by")
-    private String referredBy;
-    @Column(name = "street_name")
-    private String streetName;
-    @Column(name = "city")
-    private String city;
-    @Column(name = "state")
-    private String state;
-    @Column(name = "postal_code")
-    private int postalCode;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name ="native", strategy = "native")
-    @Column(name = "patient_id")
-    private int patientId;
+    private int patient_id;
+
+    @Column(name = "first_name")
+    private String firstName;
+
+    @Column(name = "last_name")
+    private String lastName;
+
+    @Column(name = "diagnosis")
+    private String diagnosis;
+
+    @Column(name = "referred_by")
+    private String referredBy;
+
+    @Column(name = "street_name")
+    private String streetName;
+
+    @Column(name = "city")
+    private String city;
+
+    @Column(name = "state")
+    private String state;
+
+    @Column(name = "postal_code")
+    private int postalCode;
+
+    //@OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    //private Set<PatientProcedures> treatmentPlan = new HashSet<>();
 
     /**
-     * Contructor: Instantiates a new Patient.
+     * Empty Contructor: Instantiates a new Patient.
      */
     public Patient() {
     }
@@ -51,6 +63,24 @@ public class Patient {
         this.city = city;
         this.state = state;
         this.postalCode = postalCode;
+    }
+
+    /**
+     * Gets patient id.
+     *
+     * @return the patient id
+     */
+    public int getPatientId() {
+        return patient_id;
+    }
+
+    /**
+     * Sets patient id.
+     *
+     * @param patientId the patient id
+     */
+    public void setPatientId(int patientId) {
+        this.patient_id = patientId;
     }
 
     /**
@@ -199,23 +229,44 @@ public class Patient {
         this.postalCode = postalCode;
     }
 
-    /**
-     * Gets patient id.
-     *
-     * @return the patient id
-     */
-    public int getPatientId() {
-        return patientId;
-    }
+//    /**
+//     * Gets treatment plan.
+//     *
+//     * @return the treatment plan
+//     */
+//    public Set<PatientProcedures> getTreatmentPlan() {
+//        return treatmentPlan;
+//    }
+//
+//    /**
+//     * Sets treatment plan.
+//     *
+//     * @param treatmentPlan the treatment plan
+//     */
+//    public void setTreatmentPlan(Set<PatientProcedures> treatmentPlan) {
+//        this.treatmentPlan = treatmentPlan;
+//    }
+//
+//    /**
+//     * Add procedures.
+//     *
+//     * @param patientProcedures the patient procedures
+//     */
+//    public void addProcedures(PatientProcedures patientProcedures) {
+//        treatmentPlan.add(patientProcedures);
+//        patientProcedures.setPatient(this);
+//    }
+//
+//    /**
+//     * Remove procedures.
+//     *
+//     * @param patientProcedures the patient procedures
+//     */
+//    public void removeProcedures(PatientProcedures patientProcedures) {
+//        treatmentPlan.remove(patientProcedures);
+//        patientProcedures.setPatient(null);
+//    }
 
-    /**
-     * Sets patient id.
-     *
-     * @param patientId the patient id
-     */
-    public void setPatientId(int patientId) {
-        this.patientId = patientId;
-    }
 
     @Override
     public String toString() {

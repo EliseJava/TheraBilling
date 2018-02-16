@@ -925,57 +925,109 @@
       <Comment>This table contains patient information </Comment>
       <Engine>InnoDB</Engine>
     </table>
-    <column id="234" parent="233" name="patient_id">
+    <table id="234" parent="9" name="patientprocedure">
+      <Engine>InnoDB</Engine>
+    </table>
+    <column id="235" parent="233" name="patient_id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="235" parent="233" name="first_name">
+    <column id="236" parent="233" name="first_name">
       <Position>2</Position>
       <DataType>varchar(25)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="236" parent="233" name="last_name">
+    <column id="237" parent="233" name="last_name">
       <Position>3</Position>
       <DataType>varchar(25)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="237" parent="233" name="diagnosis">
+    <column id="238" parent="233" name="diagnosis">
       <Position>4</Position>
       <DataType>varchar(30)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="238" parent="233" name="referred_by">
+    <column id="239" parent="233" name="referred_by">
       <Position>5</Position>
       <DataType>varchar(25)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="239" parent="233" name="street_name">
+    <column id="240" parent="233" name="street_name">
       <Position>6</Position>
       <DataType>varchar(25)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="240" parent="233" name="city">
+    <column id="241" parent="233" name="city">
       <Position>7</Position>
       <DataType>varchar(25)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="241" parent="233" name="state">
+    <column id="242" parent="233" name="state">
       <Position>8</Position>
       <DataType>varchar(30)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="242" parent="233" name="postal_code">
+    <column id="243" parent="233" name="postal_code">
       <Position>9</Position>
       <DataType>int(6)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <key id="243" parent="233" name="PRIMARY">
+    <key id="244" parent="233" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>patient_id</ColNames>
       <Primary>1</Primary>
     </key>
+    <column id="245" parent="234" name="pp_id">
+      <Position>1</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="246" parent="234" name="procedure_code">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="247" parent="234" name="appointment_dt">
+      <Position>3</Position>
+      <DataType>datetime|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <column id="248" parent="234" name="patient_p_id">
+      <Position>4</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+      <ColumnKind>normal</ColumnKind>
+    </column>
+    <index id="249" parent="234" name="patientprocedure_pp_id_uindex">
+      <ColNames>pp_id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="250" parent="234" name="patientprocedure_patient_patient_id_fk">
+      <ColNames>patient_p_id</ColNames>
+    </index>
+    <key id="251" parent="234" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>pp_id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <key id="252" parent="234" name="patientprocedure_pp_id_uindex">
+      <ColNames>pp_id</ColNames>
+      <UnderlyingIndexName>patientprocedure_pp_id_uindex</UnderlyingIndexName>
+    </key>
+    <foreign-key id="253" parent="234" name="patientprocedure_patient_patient_id_fk">
+      <ColNames>patient_p_id</ColNames>
+      <RefSchemaName>test_therabilling</RefSchemaName>
+      <RefTableName>patient</RefTableName>
+      <RefColNames>patient_id</RefColNames>
+      <OnUpdate>cascade</OnUpdate>
+      <OnDelete>cascade</OnDelete>
+    </foreign-key>
   </database-model>
 </dataSource>
