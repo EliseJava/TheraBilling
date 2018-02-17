@@ -1,7 +1,7 @@
 package edu.matc.persistence;
 
 import edu.matc.entity.Patient;
-import edu.matc.entity.PatientProcedures;
+import edu.matc.entity.PatientProcedure;
 import edu.matc.test.util.Database;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -14,163 +14,102 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
- * This program is testing the PatientDao
+ * This program is testing the PatientProcedureDao
  */
-class PatientDaoTest {
+class PatientProcedureDaoTest {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     /**
      * The patient dao.
      */
-    PatientDao patientDao;
-
+    PatientProcedureDao ppDao;
 
     /**
      * Sets up. Run sql to recreate the database before each test
      */
     @BeforeEach
     void setUp() {
-        patientDao = new PatientDao();
+        ppDao = new PatientProcedureDao();
         Database database = Database.getInstance();
         database.runSQL("cleanpatientdb.sql");
     }
 
-
     /**
-     * Gets patient by their id.
+     * Gets the patient's procedure by id.
      */
     @Test
-    void getPatientByIdIsSuccessful() {
-        Patient patient = patientDao.getPatientById(1);
-        assertEquals("Calvin", patient.getFirstName());
+    void getPatientProcedureByIdIsSuccessful() {
+        PatientProcedure procedure = ppDao.getPatientProceduresById(1);
+        assertEquals(97001, procedure.getProcedureCode());
     }
 
     /**
-     * Gets ALL patient in the database. Pass empty string.
+     * Gets the all procedures for a patient (by FK)
      */
     @Test
-    void getAllPatientsAreSuccessful() {
-        List<Patient> patient = patientDao.getAllPatients("");
-        assertEquals(3, patient.size());
-    }
-
-    /**
-     * Gets patient by lastname.
-     */
-    @Test
-    void getPatientsByLastNameIsSuccessful() {
-        List<Patient> patient = patientDao.getAllPatients("Gerber");
-        assertEquals(1, patient.size());
-    }
-
-    /**
-     * Verify successful get by property (equal match)
-     */
-    @Test
-    void getPatientByPropertyEqualSuccess() {
-        List<Patient> patient = patientDao.getPatientByPropertyLike("firstName", "Calvin");
-        assertEquals(1, patient.size());
-        //assertEquals(3, patient.get(0).getPatientId());
-    }
-
-    /**
-     * Patient is updates successfully.
-     */
-    @Test
-    void patientUpdatedSuccessfully() {
-
-        String newFirstName = "Calvinator";
-
-        Patient patientToUpdate = patientDao.getPatientById(1);
-        patientToUpdate.setFirstName(newFirstName);
-        patientDao.saveOrUpdate(patientToUpdate);
-
-        Patient changedPatient = patientDao.getPatientById(1);
-
-        logger.info("name should be updated {}", changedPatient.getFirstName());
-        assertEquals(newFirstName, changedPatient.getFirstName());
+    void getAllProceduresForPatient() {
+        List<PatientProcedure> procedure = ppDao.getByPropertyEqual("patient", 1);
+        assertEquals(3, procedure.size());
     }
 
 
-
     /**
-     * Verify successful insert of a patient
+     * Gets the all procedure on the database
      */
     @Test
-    void insertPatientIsSuccessful() {
-
-        Patient newPatient = new Patient("Sandy", "Kmiec", "Nerve damage in knee", "Dr. Thorpe", "11 Sandhill Crane", "Sun Prairie", "WI", 51904);
-
-        int id = patientDao.insert(newPatient);
-        assertNotEquals(0,id);
-        Patient insertedPatient = patientDao.getPatientById(id);
-
-        assertEquals("Sandy", newPatient.getFirstName());
-
-        // Could continue comparing all values, but
-        // it may make sense to use .equals()
-        // TODO review .equals recommendations http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#mapping-model-pojo-equalshashcode
+    void getAllProcedures() {
+        List<PatientProcedure> procedure = ppDao.getAllPatientProcedures();
+        assertEquals(7, procedure.size());
     }
 
     /**
-     * Verify successful insert of a patient and procedures
+     * patient procedure code is updates successfully.
      */
     @Test
-    void insertPatientWithProceduresSuccess() {
+    void UpdatedProcedureSuccessfully() {
 
+        int newCode = 888888;
 
-        Patient newPatient = new Patient("Elizabeth", "Visser", "Dislocated shoulder", "Dr. Melbourne", "4 PebbleBrook Lane", "Aurora", "IL", 42763);
-        PatientProcedures treatment1 = new PatientProcedures(123456,LocalDateTime.now(), newPatient);
+        PatientProcedure procedureToUpdate = ppDao.getPatientProceduresById(6);
+        procedureToUpdate.setProcedureCode(newCode);
+        ppDao.saveOrUpdate(procedureToUpdate);
 
-        newPatient.addProcedures(treatment1);
+        PatientProcedure changedProcedure = ppDao.getPatientProceduresById(6);
+        logger.info("Code should be updated {}", changedProcedure.getProcedureCode());
+        assertEquals(888888, changedProcedure.getProcedureCode());
+    }
 
-        int id = patientDao.insert(newPatient);
+    /**
+     * Verify successful insert of a procedure code for a patient
+     */
+    @Test
+    void insertProcedureForPatientIsSuccessful() {
 
+        PatientDao patientUpdate = new PatientDao();
+        Patient patient = patientUpdate.getPatientById(3);
+        PatientProcedure newProc = new PatientProcedure(777777, LocalDateTime.now(), patient);
+        patient.addProcedures(newProc);
+
+        int id = ppDao.insert(newProc);
         assertNotEquals(0, id);
-        Patient insertedPatient = patientDao.getPatientById(id);
-        assertNotNull(insertedPatient);
 
-        assertEquals("Elizabeth", insertedPatient.getFirstName());
-        assertEquals(1, insertedPatient.getTreatmentPlan().size());
-
-        // Could continue comparing all values, but
-        // it may make sense to use .equals()
-        // TODO review .equals recommendations http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#mapping-model-pojo-equalshashcode
-    }
-
-    @Test
-    void deleteProcedureForPatientSuccess() {
-
-        Patient person = new Patient().getId(3);
-        PatientProcedures treatment = new PatientProcedures().getId(1);
-
-        person.removeProcedures(treatment);
-
-        int id = patientDao.insert(newPatient);
-
-
-        assertNotEquals(0, id);
-        Patient insertedPatient = patientDao.getPatientById(id);
-        assertNotNull(insertedPatient);
-
-        assertEquals("Elizabeth", insertedPatient.getFirstName());
-        assertEquals(1, insertedPatient.getTreatmentPlan().size());
+        PatientProcedure testProc = ppDao.getPatientProceduresById(id);
+        assertEquals(777777, testProc.getProcedureCode());
+        assertNotNull(testProc.getPatient());
+        assertEquals("Doug", testProc.getPatient().getFirstName());
 
         // Could continue comparing all values, but
         // it may make sense to use .equals()
-        // TODO review .equals recommendations http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#mapping-model-pojo-equalshashcode
+        // TODO review .equals recommendations http://docs.jboss.org/hibernate/orm/5.2/orderguide/html_single/Hibernate_Order_Guide.html#mapping-model-pojo-equalshashcode
     }
-
 
     /**
-     * Verify successful delete of patient
+     * Delete procedure is successful.
      */
     @Test
-    void deletePatientIsSuccessfull() {
-
-        patientDao.delete(patientDao.getPatientById(3));
-        assertNull(patientDao.getPatientById(3));
+    void deleteProcedureIsSuccessful() {
+        ppDao.delete(ppDao.getPatientProceduresById(3));
+        assertNull(ppDao.getPatientProceduresById(3));
     }
-
 }

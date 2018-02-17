@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
  */
 @Entity(name = "PatientProcedures")
 @Table(name = "patientprocedure")
-public class PatientProcedures {
+public class PatientProcedure {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
@@ -28,7 +28,7 @@ public class PatientProcedures {
     /**
      * Instantiates a new Patient procedures.
      */
-    public PatientProcedures() {
+    public PatientProcedure() {
     }
 
     /**
@@ -38,7 +38,7 @@ public class PatientProcedures {
      * @param appointmentDate the appointment date
      * @param patient         the patient
      */
-    public PatientProcedures(int procedureCode, LocalDateTime appointmentDate, Patient patient) {
+    public PatientProcedure(int procedureCode, LocalDateTime appointmentDate, Patient patient) {
         this.procedureCode = procedureCode;
         this.appointmentDate = appointmentDate;
         this.patient = patient;
@@ -118,7 +118,7 @@ public class PatientProcedures {
 
     @Override
     public String toString() {
-        return "PatientProcedures{" +
+        return "PatientProcedure{" +
                 "procedureCode=" + procedureCode +
                 ", appointmentDate=" + appointmentDate +
                 ", patient=" + patient +

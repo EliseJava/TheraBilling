@@ -1,6 +1,6 @@
 package edu.matc.persistence;
 
-import edu.matc.entity.PatientProcedures;
+import edu.matc.entity.PatientProcedure;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
@@ -13,9 +13,9 @@ import javax.persistence.criteria.Root;
 import java.util.List;
 
 /**
- * The type PatientProcedures dao.
+ * The type PatientProcedure dao.
  */
-public class PatientProceduresDao {
+public class PatientProcedureDao {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
@@ -27,40 +27,57 @@ public class PatientProceduresDao {
     /**
      * Get patientProcedures by id
      */
-    public PatientProcedures getPatientProceduresById(int id) {
+    public PatientProcedure getPatientProceduresById(int id) {
         Session session = sessionFactory.openSession();
-        PatientProcedures patientProcedures = session.get(PatientProcedures.class, id);
+        PatientProcedure patientProcedures = session.get(PatientProcedure.class, id);
         session.close();
         return patientProcedures;
     }
 
+    /**
+     * Gets all patientProcedures.
+     *
+     * @return the all patientProcedures
+     */
+    public List<PatientProcedure> getAllPatientProcedures() {
+
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<PatientProcedure> query = builder.createQuery(PatientProcedure.class);
+        Root<PatientProcedure> root = query.from(PatientProcedure.class);
+        List<PatientProcedure> patientProcedures = session.createQuery(query).getResultList();
+        session.close();
+        return patientProcedures;
+    }
 
     /**
-     * Get PatientProcedures by property (like)
-     * sample usage: getByPropertyLike("lastname", "C")
+     * Get patient by property (exact match)
+     * sample usage: getByPropertyEqual("lastName", "Curry")
+     *
+     * @param propertyName entity property to search by
+     * @param value value of the property to search for
+     * @return list of patients meeting the criteria search
      */
-    public List<PatientProcedures> getPatientProceduresByPropertyLike(String propertyName, String value) {
+    public List<PatientProcedure> getByPropertyEqual(String propertyName, int value) {
         Session session = sessionFactory.openSession();
 
-        logger.debug("Searching for PatientProcedures with {} = {}",  propertyName, value);
+        logger.debug("Searching for patient with " + propertyName + " = " + value);
 
         CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<PatientProcedures> query = builder.createQuery( PatientProcedures.class );
-        Root<PatientProcedures> root = query.from( PatientProcedures.class );
-        Expression<String> propertyPath = root.get(propertyName);
-
-        query.where(builder.like(propertyPath, "%" + value + "%"));
-
-        List<PatientProcedures> PatientProceduress = session.createQuery( query ).getResultList();
+        CriteriaQuery<PatientProcedure> query = builder.createQuery( PatientProcedure.class );
+        Root<PatientProcedure> root = query.from( PatientProcedure.class );
+        query.select(root).where(builder.equal(root.get(propertyName), value));
+        List<PatientProcedure> procedures = session.createQuery( query ).getResultList();
         session.close();
-        return PatientProceduress;
+
+        return procedures;
     }
 
     /**
      * update/save patientProcedures
-     * @param patientProcedures  PatientProcedures to be inserted or updated
+     * @param patientProcedures  PatientProcedure to be inserted or updated
      */
-    public void saveOrUpdate(PatientProcedures patientProcedures) {
+    public void saveOrUpdate(PatientProcedure patientProcedures) {
 
         logger.info("patientProcedures {}", patientProcedures);
 
@@ -75,7 +92,7 @@ public class PatientProceduresDao {
      * update patientProcedures
      * @param patientProcedures  the patientProcedures to be inserted or updated
      */
-    public int insert(PatientProcedures patientProcedures) {
+    public int insert(PatientProcedure patientProcedures) {
         int id = 0;
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -87,9 +104,9 @@ public class PatientProceduresDao {
 
     /**
      * Delete a patientProcedures
-     * @param patientProcedures PatientProcedures to be deleted
+     * @param patientProcedures PatientProcedure to be deleted
      */
-    public void delete(PatientProcedures patientProcedures) {
+    public void delete(PatientProcedure patientProcedures) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         session.delete(patientProcedures);

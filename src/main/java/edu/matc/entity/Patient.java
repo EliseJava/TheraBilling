@@ -16,7 +16,7 @@ public class Patient {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name ="native", strategy = "native")
-    private int patient_id;
+    private int id;
 
     @Column(name = "first_name")
     private String firstName;
@@ -43,7 +43,7 @@ public class Patient {
     private int postalCode;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<PatientProcedures> yyyy = new HashSet<>();
+    private Set<PatientProcedure> treatmentPlan = new HashSet<>();
 
     /**
      * Empty Contructor: Instantiates a new Patient.
@@ -70,8 +70,8 @@ public class Patient {
      *
      * @return the patient id
      */
-    public int getPatientId() {
-        return patient_id;
+    public int getId() {
+        return id;
     }
 
     /**
@@ -79,8 +79,8 @@ public class Patient {
      *
      * @param patientId the patient id
      */
-    public void setPatientId(int patientId) {
-        this.patient_id = patientId;
+    public void setId(int patientId) {
+        this.id = patientId;
     }
 
     /**
@@ -229,43 +229,43 @@ public class Patient {
         this.postalCode = postalCode;
     }
 
-//    /**
-//     * Gets treatment plan.
-//     *
-//     * @return the treatment plan
-//     */
-//    public Set<PatientProcedures> getTreatmentPlan() {
-//        return treatmentPlan;
-//    }
-//
-//    /**
-//     * Sets treatment plan.
-//     *
-//     * @param treatmentPlan the treatment plan
-//     */
-//    public void setTreatmentPlan(Set<PatientProcedures> treatmentPlan) {
-//        this.treatmentPlan = treatmentPlan;
-//    }
-//
-//    /**
-//     * Add procedures.
-//     *
-//     * @param patientProcedures the patient procedures
-//     */
-//    public void addProcedures(PatientProcedures patientProcedures) {
-//        treatmentPlan.add(patientProcedures);
-//        patientProcedures.setPatient(this);
-//    }
-//
-//    /**
-//     * Remove procedures.
-//     *
-//     * @param patientProcedures the patient procedures
-//     */
-//    public void removeProcedures(PatientProcedures patientProcedures) {
-//        treatmentPlan.remove(patientProcedures);
-//        patientProcedures.setPatient(null);
-//    }
+    /**
+     * Gets treatment plan.
+     *
+     * @return the treatment plan
+     */
+    public Set<PatientProcedure> getTreatmentPlan() {
+        return treatmentPlan;
+    }
+
+    /**
+     * Sets treatment plan.
+     *
+     * @param treatmentPlan the treatment plan
+     */
+    public void setTreatmentPlan(Set<PatientProcedure> treatmentPlan) {
+        this.treatmentPlan = treatmentPlan;
+    }
+
+    /**
+     * Add procedures.
+     *
+     * @param patientProcedures the patient procedures
+     */
+    public void addProcedures(PatientProcedure patientProcedures) {
+        treatmentPlan.add(patientProcedures);
+        patientProcedures.setPatient(this);
+    }
+
+    /**
+     * Remove procedures.
+     *
+     * @param patientProcedures the patient procedures
+     */
+    public void removeProcedures(PatientProcedure patientProcedures) {
+        treatmentPlan.remove(patientProcedures);
+        patientProcedures.setPatient(null);
+    }
 
 
     @Override

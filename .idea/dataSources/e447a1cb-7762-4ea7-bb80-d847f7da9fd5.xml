@@ -928,7 +928,7 @@
     <table id="234" parent="9" name="patientprocedure">
       <Engine>InnoDB</Engine>
     </table>
-    <column id="235" parent="233" name="patient_id">
+    <column id="235" parent="233" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
@@ -977,10 +977,10 @@
     </column>
     <key id="244" parent="233" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>patient_id</ColNames>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="245" parent="234" name="pp_id">
+    <column id="245" parent="234" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
@@ -999,33 +999,33 @@
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="248" parent="234" name="patient_p_id">
+    <column id="248" parent="234" name="patient_id">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
     <index id="249" parent="234" name="patientprocedure_pp_id_uindex">
-      <ColNames>pp_id</ColNames>
+      <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
     <index id="250" parent="234" name="patientprocedure_patient_patient_id_fk">
-      <ColNames>patient_p_id</ColNames>
+      <ColNames>patient_id</ColNames>
     </index>
     <key id="251" parent="234" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
-      <ColNames>pp_id</ColNames>
+      <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
     <key id="252" parent="234" name="patientprocedure_pp_id_uindex">
-      <ColNames>pp_id</ColNames>
+      <ColNames>id</ColNames>
       <UnderlyingIndexName>patientprocedure_pp_id_uindex</UnderlyingIndexName>
     </key>
     <foreign-key id="253" parent="234" name="patientprocedure_patient_patient_id_fk">
-      <ColNames>patient_p_id</ColNames>
+      <ColNames>patient_id</ColNames>
       <RefSchemaName>test_therabilling</RefSchemaName>
       <RefTableName>patient</RefTableName>
-      <RefColNames>patient_id</RefColNames>
+      <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>

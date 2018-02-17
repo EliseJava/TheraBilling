@@ -82,6 +82,29 @@ public class PatientDao {
     }
 
     /**
+     * Get patient by property (exact match)
+     * sample usage: getByPropertyEqual("lastName", "Curry")
+     *
+     * @param propertyName entity property to search by
+     * @param value value of the property to search for
+     * @return list of patients meeting the criteria search
+     */
+    public List<Patient> getByPropertyEqual(String propertyName, String value) {
+        Session session = sessionFactory.openSession();
+
+        logger.debug("Searching for patient with " + propertyName + " = " + value);
+
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<Patient> query = builder.createQuery( Patient.class );
+        Root<Patient> root = query.from( Patient.class );
+        query.select(root).where(builder.equal(root.get(propertyName), value));
+        List<Patient> patients = session.createQuery( query ).getResultList();
+
+        session.close();
+        return patients;
+    }
+
+    /**
      * update/save patient
      * @param patient  Patient to be inserted or updated
      */
