@@ -8,7 +8,9 @@ import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -90,16 +92,16 @@ class PatientProcedureDaoTest {
 
         //get a patient and add a procedure
         Patient patient = patientUpdate.getPatientById(3);
-        PatientProcedure newProc = new PatientProcedure(777777, LocalDateTime.now(), patient);
+        PatientProcedure newProc = new PatientProcedure(777777, LocalDateTime.parse("2018-02-17T10:25:10"), patient);
         patient.addProcedures(newProc);
 
         //insert the procedure for the patient
         int id = ppDao.insert(newProc);
         assertNotEquals(0, id);
 
-        //test that the correct procedure got added
+        //test that the correct procedure got added to the intended patient
         PatientProcedure testProc = ppDao.getPatientProceduresById(id);
-        assertEquals(newProc, testProc());
+        assertEquals(newProc, testProc);
 
         //test that nothing changed for the patient
         Patient patientWithProc = patientUpdate.getPatientById(3);
@@ -107,7 +109,7 @@ class PatientProcedureDaoTest {
 
         //test that the correct procedure got added to the correct patient
         assertNotNull(testProc.getPatient());
-        assertEquals(3", testProc.getPatient().getId());
+        assertEquals(3, testProc.getPatient().getId());
 
         //http://docs.jboss.org/hibernate/orm/5.2/orderguide/html_single/Hibernate_Order_Guide.html#mapping-model-pojo-equalshashcode
     }
