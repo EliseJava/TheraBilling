@@ -15,7 +15,7 @@ public class PatientProcedures {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO, generator = "native")
     @GenericGenerator(name ="native", strategy = "native")
-    private int pp_id;
+    private int id;
 
     @Column(name = "procedure_code")
     private int procedureCode;
@@ -45,21 +45,21 @@ public class PatientProcedures {
     }
 
     /**
-     * Gets pp id.
+     * Gets id.
      *
      * @return the pp id
      */
-    public int getPp_id() {
-        return pp_id;
+    public int getId() {
+        return id;
     }
 
     /**
-     * Sets pp id.
+     * Sets id.
      *
-     * @param pp_id the pp id
+     * @param id the id
      */
-    public void setPp_id(int pp_id) {
-        this.pp_id = pp_id;
+    public void setPp_id(int id) {
+        this.id = id;
     }
 
     /**
