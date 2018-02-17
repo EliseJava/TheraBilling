@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 /**
  * The type Patient procedures.
@@ -123,5 +124,21 @@ public class PatientProcedure {
                 ", appointmentDate=" + appointmentDate +
                 ", patient=" + patient +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PatientProcedure that = (PatientProcedure) o;
+        return id == that.id &&
+                procedureCode == that.procedureCode &&
+                Objects.equals(appointmentDate, that.appointmentDate);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, procedureCode, appointmentDate);
     }
 }

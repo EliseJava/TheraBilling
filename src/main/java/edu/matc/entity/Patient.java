@@ -4,6 +4,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 /**
@@ -267,7 +268,6 @@ public class Patient {
         patientProcedures.setPatient(null);
     }
 
-
     @Override
     public String toString() {
         return "Patient {" +
@@ -280,5 +280,27 @@ public class Patient {
                 ", State       ='" + state  + '\'' +
                 ", Postal Code ='" + postalCode + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Patient patient = (Patient) o;
+        return id == patient.id &&
+                postalCode == patient.postalCode &&
+                Objects.equals(firstName, patient.firstName) &&
+                Objects.equals(lastName, patient.lastName) &&
+                Objects.equals(diagnosis, patient.diagnosis) &&
+                Objects.equals(referredBy, patient.referredBy) &&
+                Objects.equals(streetName, patient.streetName) &&
+                Objects.equals(city, patient.city) &&
+                Objects.equals(state, patient.state);
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(id, firstName, lastName, diagnosis, referredBy, streetName, city, state, postalCode);
     }
 }

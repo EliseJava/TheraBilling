@@ -77,31 +77,39 @@ class PatientProcedureDaoTest {
 
         PatientProcedure changedProcedure = ppDao.getPatientProceduresById(6);
         logger.info("Code should be updated {}", changedProcedure.getProcedureCode());
-        assertEquals(888888, changedProcedure.getProcedureCode());
+        assertEquals(procedureToUpdate, changedProcedure);
     }
 
     /**
-     * Verify successful insert of a procedure code for a patient
+     * Verify successful insert of a procedure for a patient
      */
     @Test
     void insertProcedureForPatientIsSuccessful() {
 
         PatientDao patientUpdate = new PatientDao();
+
+        //get a patient and add a procedure
         Patient patient = patientUpdate.getPatientById(3);
         PatientProcedure newProc = new PatientProcedure(777777, LocalDateTime.now(), patient);
         patient.addProcedures(newProc);
 
+        //insert the procedure for the patient
         int id = ppDao.insert(newProc);
         assertNotEquals(0, id);
 
+        //test that the correct procedure got added
         PatientProcedure testProc = ppDao.getPatientProceduresById(id);
-        assertEquals(777777, testProc.getProcedureCode());
-        assertNotNull(testProc.getPatient());
-        assertEquals("Doug", testProc.getPatient().getFirstName());
+        assertEquals(newProc, testProc());
 
-        // Could continue comparing all values, but
-        // it may make sense to use .equals()
-        // TODO review .equals recommendations http://docs.jboss.org/hibernate/orm/5.2/orderguide/html_single/Hibernate_Order_Guide.html#mapping-model-pojo-equalshashcode
+        //test that nothing changed for the patient
+        Patient patientWithProc = patientUpdate.getPatientById(3);
+        assertEquals(patient, patientWithProc);
+
+        //test that the correct procedure got added to the correct patient
+        assertNotNull(testProc.getPatient());
+        assertEquals(3", testProc.getPatient().getId());
+
+        //http://docs.jboss.org/hibernate/orm/5.2/orderguide/html_single/Hibernate_Order_Guide.html#mapping-model-pojo-equalshashcode
     }
 
     /**

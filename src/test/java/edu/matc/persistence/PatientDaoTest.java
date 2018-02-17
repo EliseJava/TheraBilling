@@ -89,15 +89,14 @@ class PatientDaoTest {
     void patientUpdatedSuccessfully() {
 
         String newFirstName = "Calvinator";
-
         Patient patientToUpdate = patientDao.getPatientById(1);
         patientToUpdate.setFirstName(newFirstName);
         patientDao.saveOrUpdate(patientToUpdate);
 
         Patient changedPatient = patientDao.getPatientById(1);
-
         logger.info("name should be updated {}", changedPatient.getFirstName());
-        assertEquals(newFirstName, changedPatient.getFirstName());
+        //assertEquals(newFirstName, changedPatient.getFirstName());
+        assertEquals(patientToUpdate, changedPatient);
     }
 
     /**
@@ -120,7 +119,7 @@ class PatientDaoTest {
     }
 
     /**
-     * Verify successful insert of a patient and procedures
+     * Verify successful insert of a patient and procedure
      */
     @Test
     void insertPatientWithProceduresSuccess() {
@@ -128,7 +127,6 @@ class PatientDaoTest {
 
         Patient newPatient = new Patient("Elizabeth", "Visser", "Dislocated shoulder", "Dr. Melbourne", "4 PebbleBrook Lane", "Aurora", "IL", 42763);
         PatientProcedure treatment1 = new PatientProcedure(123456,LocalDateTime.now(), newPatient);
-
         newPatient.addProcedures(treatment1);
 
         int id = patientDao.insert(newPatient);
@@ -145,7 +143,6 @@ class PatientDaoTest {
         // TODO review .equals recommendations http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#mapping-model-pojo-equalshashcode
     }
 
-
     /**
      * Verify successful delete of patient
      */
@@ -155,5 +152,8 @@ class PatientDaoTest {
         patientDao.delete(patientDao.getPatientById(3));
         assertNull(patientDao.getPatientById(3));
     }
+
+
+
 
 }
