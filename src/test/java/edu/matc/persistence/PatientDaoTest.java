@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * This program is testing the PatientDao
@@ -24,6 +25,7 @@ class PatientDaoTest {
      * The patient dao.
      */
     PatientDao patientDao;
+    GenericDao genericDao;
 
     /**
      * Sets up. Run sql to recreate the database before each test
@@ -31,16 +33,19 @@ class PatientDaoTest {
     @BeforeEach
     void setUp() {
         patientDao = new PatientDao();
+        genericDao = new GenericDao(Patient.class);
+
         Database database = Database.getInstance();
         database.runSQL("cleanpatientdb.sql");
     }
 
     /**
-     * Gets patient by their id.
+     * Verify a patient is returned correctly by their id.
      */
     @Test
     void getPatientByIdIsSuccessful() {
-        Patient patient = patientDao.getPatientById(1);
+        Patient patient = (Patient)genericDao.getById(1);
+        assertNotNull(patient);
         assertEquals("Calvin", patient.getFirstName());
     }
 
@@ -48,7 +53,16 @@ class PatientDaoTest {
      * Gets ALL patient in the database.
      */
     @Test
-    void getAllPatientsAreSuccessful() {
+    void getAllAreSuccessful() {
+        List<Patient> patient = (List<Patient>)genericDao.getAll();
+        assertEquals(5, patient.size());
+    }
+
+    /**
+     * Gets ALL patient in the database.
+     */
+    @Test
+    void getAllByLastNameAreSuccessful() {
         List<Patient> patient = patientDao.getAllPatients("");
         assertEquals(5, patient.size());
     }
@@ -89,13 +103,12 @@ class PatientDaoTest {
     void patientUpdatedSuccessfully() {
 
         String newFirstName = "Calvinator";
-        Patient patientToUpdate = patientDao.getPatientById(1);
+        Patient patientToUpdate = (Patient)genericDao.getById(1);
         patientToUpdate.setFirstName(newFirstName);
         patientDao.saveOrUpdate(patientToUpdate);
 
-        Patient changedPatient = patientDao.getPatientById(1);
+        Patient changedPatient = (Patient)genericDao.getById(1);
         logger.info("name should be updated {}", changedPatient.getFirstName());
-        //assertEquals(newFirstName, changedPatient.getFirstName());
         assertEquals(patientToUpdate, changedPatient);
     }
 
@@ -106,54 +119,44 @@ class PatientDaoTest {
     void insertPatientIsSuccessful() {
 
         Patient newPatient = new Patient("Sandy", "Kmiec", "Nerve damage in knee", "Dr. Thorpe", "11 Sandhill Crane", "Sun Prairie", "WI", 51904);
-
-        int id = patientDao.insert(newPatient);
+        int id = genericDao.insert(newPatient);
         assertNotEquals(0,id);
-        Patient insertedPatient = patientDao.getPatientById(id);
 
-        assertEquals("Sandy", newPatient.getFirstName());
+        Patient insertedPatient = (Patient)genericDao.getById(id);
+        assertEquals(newPatient, insertedPatient);
 
-        // Could continue comparing all values, but
-        // it may make sense to use .equals()
-        // TODO review .equals recommendations http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#mapping-model-pojo-equalshashcode
+        //http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#mapping-model-pojo-equalshashcode
     }
 
     /**
-     * Verify successful insert of a patient and procedure
+     * Verify successful insert of a patient with more than one procedure
      */
     @Test
     void insertPatientWithProceduresSuccess() {
-
 
         Patient newPatient = new Patient("Elizabeth", "Visser", "Dislocated shoulder", "Dr. Melbourne", "4 PebbleBrook Lane", "Aurora", "IL", 42763);
         PatientProcedure treatment1 = new PatientProcedure(123456,LocalDateTime.now(), newPatient);
         newPatient.addProcedures(treatment1);
 
-        int id = patientDao.insert(newPatient);
+        int id = genericDao.insert(newPatient);
 
         assertNotEquals(0, id);
-        Patient insertedPatient = patientDao.getPatientById(id);
+        Patient insertedPatient = (Patient)genericDao.getById(id);
         assertNotNull(insertedPatient);
 
-        assertEquals("Elizabeth", insertedPatient.getFirstName());
+        assertEquals(newPatient, insertedPatient);
         assertEquals(1, insertedPatient.getTreatmentPlan().size());
 
-        // Could continue comparing all values, but
-        // it may make sense to use .equals()
-        // TODO review .equals recommendations http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#mapping-model-pojo-equalshashcode
+        //http://docs.jboss.org/hibernate/orm/5.2/userguide/html_single/Hibernate_User_Guide.html#mapping-model-pojo-equalshashcode
     }
 
     /**
      * Verify successful delete of patient
      */
     @Test
-    void deletePatientIsSuccessfull() {
+    void deletePatientIsSuccessful() {
 
-        patientDao.delete(patientDao.getPatientById(3));
-        assertNull(patientDao.getPatientById(3));
+        genericDao.delete((Patient)genericDao.getById(3));
+        assertNull((Patient)genericDao.getById(3));
     }
-
-
-
-
 }

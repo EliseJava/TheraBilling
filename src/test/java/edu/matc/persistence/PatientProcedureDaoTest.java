@@ -26,6 +26,7 @@ class PatientProcedureDaoTest {
      * The patient dao.
      */
     PatientProcedureDao ppDao;
+    GenericDao genericDao;
 
     /**
      * Sets up. Run sql to recreate the database before each test
@@ -33,6 +34,8 @@ class PatientProcedureDaoTest {
     @BeforeEach
     void setUp() {
         ppDao = new PatientProcedureDao();
+        genericDao = new GenericDao(Patient.class);
+
         Database database = Database.getInstance();
         database.runSQL("cleanpatientdb.sql");
     }
@@ -83,7 +86,7 @@ class PatientProcedureDaoTest {
     }
 
     /**
-     * Verify successful insert of a procedure for a patient
+     * Verify successful insert of a procedure for an existing patient
      */
     @Test
     void insertProcedureForPatientIsSuccessful() {
@@ -91,7 +94,7 @@ class PatientProcedureDaoTest {
         PatientDao patientUpdate = new PatientDao();
 
         //get a patient and add a procedure
-        Patient patient = patientUpdate.getPatientById(3);
+        Patient patient = (Patient)genericDao.getById(3);
         PatientProcedure newProc = new PatientProcedure(777777, LocalDateTime.parse("2018-02-17T10:25:10"), patient);
         patient.addProcedures(newProc);
 
@@ -104,7 +107,7 @@ class PatientProcedureDaoTest {
         assertEquals(newProc, testProc);
 
         //test that nothing changed for the patient
-        Patient patientWithProc = patientUpdate.getPatientById(3);
+        Patient patientWithProc = (Patient)genericDao.getById(3);
         assertEquals(patient, patientWithProc);
 
         //test that the correct procedure got added to the correct patient

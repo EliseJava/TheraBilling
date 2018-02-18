@@ -24,15 +24,15 @@ public class PatientDao {
      */
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
-    /**
-     * Get patient by id
-     */
-    public Patient getPatientById(int id) {
-        Session session = sessionFactory.openSession();
-        Patient patient = session.get(Patient.class, id);
-        session.close();
-        return patient;
-    }
+//    /**
+//     * Get patient by id
+//     */
+//    public Patient getPatientById(int id) {
+//        Session session = sessionFactory.openSession();
+//        Patient patient = session.get(Patient.class, id);
+//        session.close();
+//        return patient;
+//    }
 
     /**
      * Get patient(s) by last name or start of last name.
@@ -119,31 +119,31 @@ public class PatientDao {
         session.close();
     }
 
-    /**
-     * update patient
-     * @param patient  the patient to be inserted or updated
-     */
-    public int insert(Patient patient) {
-        int id = 0;
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        id = (int)session.save(patient);
-        transaction.commit();
-        session.close();
-        return id;
-    }
-
-    /**
-     * Delete a patient
-     * @param patient Patient to be deleted
-     */
-    public void delete(Patient patient) {
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-        session.delete(patient);
-        transaction.commit();
-        session.close();
-    }
+//    /**
+//     * update patient
+//     * @param patient  the patient to be inserted or updated
+//     */
+//    public int insert(Patient patient) {
+//        int id = 0;
+//        Session session = sessionFactory.openSession();
+//        Transaction transaction = session.beginTransaction();
+//        id = (int)session.save(patient);
+//        transaction.commit();
+//        session.close();
+//        return id;
+//    }
+//
+//    /**
+//     * Delete a patient
+//     * @param patient Patient to be deleted
+//     */
+//    public void delete(Patient patient) {
+//        Session session = sessionFactory.openSession();
+//        Transaction transaction = session.beginTransaction();
+//        session.delete(patient);
+//        transaction.commit();
+//        session.close();
+//    }
 
 
 }
