@@ -6,12 +6,15 @@ import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 
+import edu.matc.entity.Patient;
 import edu.matc.entity.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 /**
@@ -22,6 +25,7 @@ public class GenericDao<T> {
 
     private Class<T> type;
     private final Logger logger = LogManager.getLogger(this.getClass());
+    SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
     /**
      * Instantiates a new Generic dao.     *
@@ -35,7 +39,7 @@ public class GenericDao<T> {
      * Gets all entities     *
      * @return the all entities
      */
-    public List<T> getAll() {
+    public List<T> getAllByTable() {
         Session session = getSession();
         CriteriaBuilder builder = session.getCriteriaBuilder();
 
@@ -59,6 +63,52 @@ public class GenericDao<T> {
         return entity;
     }
 
+    /**
+     * This function gets by a column, and searches by a term.
+     * @return a list of users
+     */
+    public List<T> getByColumn(String column, String term) {
+
+        logger.debug("Searching for Patient with {} = {}",  column, term);
+
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(type);
+        Root<T> root = query.from(type);
+        Expression<String> propertyPath = root.get(column);
+        query.where(builder.like(propertyPath,term + "%"));
+        List<T> list = session.createQuery(query).getResultList();
+        session.close();
+
+        return list;
+    }
+
+    /**
+     * Get patient(s) by last name or start of last name.
+     * OR
+     * Get all patients if no last name provided
+     *
+     * @param lastName the last name
+     * @return the patients
+     */
+    public List<T> getAllPatients(String lastName) {
+
+        logger.debug("lastname {}", lastName);
+
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(type);
+        //CriteriaQuery<Patient> query = builder.createQuery(Patient.class);
+        Root<T> root = query.from(type);
+        if (!lastName.equals("")) {
+            Expression<String> propertyPath = root.get("lastName");
+            query.where(builder.like(propertyPath, lastName + "%"));
+        }
+        List<T> patients = session.createQuery(query).getResultList();
+        session.close();
+
+        return patients;
+    }
 
 
     /**
@@ -86,6 +136,21 @@ public class GenericDao<T> {
         transaction.commit();
         session.close();
         return id;
+    }
+
+    /**
+     * update/save entity
+     * @param entity  Entity to be inserted or updated
+     */
+    public void saveOrUpdate(T entity) {
+
+        logger.info("patient {}", entity);
+
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        session.saveOrUpdate(entity);
+        transaction.commit();
+        session.close();
     }
 
     /**

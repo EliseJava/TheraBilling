@@ -32,9 +32,9 @@ public class SearchUser extends HttpServlet {
 
         Patient patient = (Patient)genericDao.getById(1);
 
-        List<Patient> patients = (List<Patient>)genericDao.getAll();
+        List<Patient> patients = (List<Patient>)genericDao.getAllByTable();
 
-        request.setAttribute("patients", (List<Patient>)genericDao.getAll());
+        request.setAttribute("patients", (List<Patient>)genericDao.getAllByTable());
         RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/patientresults.jsp");
         dispatcher.forward(request, response);
     }

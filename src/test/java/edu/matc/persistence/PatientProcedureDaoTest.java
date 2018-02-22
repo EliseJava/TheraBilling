@@ -91,7 +91,7 @@ class PatientProcedureDaoTest {
     @Test
     void insertProcedureForPatientIsSuccessful() {
 
-        PatientDao patientUpdate = new PatientDao();
+        GenericDao patientUpdate = new GenericDao(Patient.class);
 
         //get a patient and add a procedure
         Patient patient = (Patient)genericDao.getById(3);

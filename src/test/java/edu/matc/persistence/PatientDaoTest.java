@@ -22,17 +22,15 @@ class PatientDaoTest {
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     /**
-     * The patient dao.
+     * The genericDao.
      */
-    PatientDao patientDao;
-    GenericDao genericDao;
+     GenericDao genericDao;
 
     /**
      * Sets up. Run sql to recreate the database before each test
      */
     @BeforeEach
     void setUp() {
-        patientDao = new PatientDao();
         genericDao = new GenericDao(Patient.class);
 
         Database database = Database.getInstance();
@@ -54,7 +52,7 @@ class PatientDaoTest {
      */
     @Test
     void getAllAreSuccessful() {
-        List<Patient> patient = (List<Patient>)genericDao.getAll();
+        List<Patient> patient = (List<Patient>)genericDao.getAllByTable();
         assertEquals(5, patient.size());
     }
 
@@ -63,7 +61,7 @@ class PatientDaoTest {
      */
     @Test
     void getAllByLastNameAreSuccessful() {
-        List<Patient> patient = patientDao.getAllPatients("");
+        List<Patient> patient = (List<Patient>)genericDao.getAllPatients("");
         assertEquals(5, patient.size());
     }
 
@@ -72,17 +70,27 @@ class PatientDaoTest {
      */
     @Test
     void getPatientsByLastNameIsSuccessful() {
-        List<Patient> patient = patientDao.getAllPatients("R");
+        List<Patient> patient = (List<Patient>)genericDao.getAllPatients("R");
         assertEquals(2, patient.size());
     }
+
+    /**
+     * Gets patient by like lastname
+     */
+    @Test
+    void getPatientsByColumnIsSuccessful() {
+        List<Patient> patient = (List<Patient>)genericDao.getByColumn("lastName", "R");
+        assertEquals(2, patient.size());
+    }
+
 
     /**
      * Verify successful get by property - likes
      */
     @Test
     void getPropertyLikeSuccess() {
-        List<Patient> patient = patientDao.getPatientByPropertyLike("firstName", "i");
-        assertEquals(4, patient.size());
+        List<Patient> patient = (List<Patient>)genericDao.getByColumn("firstName", "Cal");
+        assertEquals(1, patient.size());
         //assertEquals(3, patient.get(0).getPatientId());
     }
 
@@ -92,7 +100,7 @@ class PatientDaoTest {
      */
     @Test
     void getPropertyEqualSuccess() {
-        List<Patient> patient = patientDao.getByPropertyEqual("lastName", "Roberts");
+        List<Patient> patient = (List<Patient>)genericDao.getByColumn("lastName", "Roberts");
         assertEquals(1, patient.size());
     }
 
@@ -105,7 +113,7 @@ class PatientDaoTest {
         String newFirstName = "Calvinator";
         Patient patientToUpdate = (Patient)genericDao.getById(1);
         patientToUpdate.setFirstName(newFirstName);
-        patientDao.saveOrUpdate(patientToUpdate);
+        genericDao.saveOrUpdate(patientToUpdate);
 
         Patient changedPatient = (Patient)genericDao.getById(1);
         logger.info("name should be updated {}", changedPatient.getFirstName());
