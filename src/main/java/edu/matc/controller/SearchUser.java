@@ -2,8 +2,6 @@ package edu.matc.controller;
 
 import edu.matc.entity.Patient;
 import edu.matc.persistence.GenericDao;
-import edu.matc.persistence.PatientDao;
-import edu.matc.persistence.UserDao;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;

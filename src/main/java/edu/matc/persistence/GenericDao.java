@@ -9,13 +9,13 @@ import javax.persistence.criteria.CriteriaQuery;
 import javax.persistence.criteria.Expression;
 import javax.persistence.criteria.Root;
 
-import edu.matc.entity.Patient;
-import edu.matc.entity.User;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
 
 /**
  * A generic DAO somewhat inspired by http://rodrigouchoa.wordpress.com
@@ -78,6 +78,25 @@ public class GenericDao<T> {
         Expression<String> propertyPath = root.get(column);
         query.where(builder.like(propertyPath,term + "%"));
         List<T> list = session.createQuery(query).getResultList();
+        session.close();
+
+        return list;
+    }
+
+    /**
+     * This function gets by a column, and searches by a term.
+     * @return a list of users
+     */
+    public List<T> getByColumnInt(String column, int term) {
+
+        logger.debug("Searching for Patient with {} = {}",  column, term);
+
+        Session session = sessionFactory.openSession();
+        CriteriaBuilder builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query = builder.createQuery(type);
+        Root<T> root = query.from(type);
+        query.select(root).where(builder.equal(root.get(column), term));
+        List<T> list = session.createQuery( query ).getResultList();
         session.close();
 
         return list;

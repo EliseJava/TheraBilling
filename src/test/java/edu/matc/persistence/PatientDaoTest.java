@@ -1,5 +1,6 @@
 package edu.matc.persistence;
 
+
 import edu.matc.entity.Patient;
 import edu.matc.entity.PatientProcedure;
 import edu.matc.test.util.Database;
@@ -24,7 +25,8 @@ class PatientDaoTest {
     /**
      * The genericDao.
      */
-     GenericDao genericDao;
+    GenericDao genericDao;
+
 
     /**
      * Sets up. Run sql to recreate the database before each test
