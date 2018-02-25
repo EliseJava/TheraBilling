@@ -7,7 +7,8 @@
 <body>
 
 <div id="wrap">
-    <c:import url="jsp/login.jsp" />
+
+    <a href="jsp/search.jsp"/>click here
 </div>
 
 </body>

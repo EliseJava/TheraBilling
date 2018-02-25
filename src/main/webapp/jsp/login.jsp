@@ -3,22 +3,16 @@
 <body>
 <form>
     <fieldset>
-        <legend>Custom Tag</legend>
+        <legend>Word of the day</legend>
         <h2><es:Hello/></h2>
     </fieldset>
 </form>
 
 
-<form action="searchUser" method="GET">
-
-    <form action="searchUser" method="GET">
+<form action="j_security_check" method="POST">
         <br>
-
-        User Name:<input type="text" name="username"><br><br>
-        Password :<input type="password" name="password"><input type="submit" value="submit">
-
-    </form>
-
+        User Name:<input type="TEXT" name="j_username"><br><br>
+        Password :<input type="PASSWORD" name="j_password"><input type="submit" value="submit">
 </form>
 
 </body>
