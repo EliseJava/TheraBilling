@@ -18,7 +18,7 @@
 
     <web-resource-collection>
       <web-resource-name>billing</web-resource-name>
-      <url-pattern>/jsp/search.jsp</url-pattern>
+      <url-pattern>/dashboard.jsp</url-pattern>
     </web-resource-collection>
 
     <auth-constraint>

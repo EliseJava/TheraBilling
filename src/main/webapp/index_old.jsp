@@ -7,13 +7,6 @@
     <link rel="stylesheet" href="css/theraStyle.css">
 </head>
 
-<header>
-    <!-- Header links go here, just change the link and the title like in the examples I put --!>
-    <p><a href="google.com">Google</a>
-    <a href="https://www.w3schools.com/html/default.asp">HTML Documentation</a>
-
-    </p>
-</header>
 
 <body>
     <main><H1>TheraBilling</H1></main>
@@ -37,3 +30,7 @@
 <footer>
     <!-- Anything that you want in the footer goes here (Social Media, Sponsors, etc. --!>
 </footer>
+
+    <div id="wrap">
+
+    <a href="jsp/search.jsp"/>click here

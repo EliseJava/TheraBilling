@@ -1,6 +1,14 @@
 <%@include file="/jsp/head.jsp"%>
 <html>
+
+<head>
+    <meta charset="utf-8">
+    <title>TheraBilling</title>
+    <link rel="stylesheet" href="theraStyle.css">
+</head>
 <body>
+
+<main><H1>TheraBilling</H1></main>
 
 <h2>Search for Patients</h2>
 

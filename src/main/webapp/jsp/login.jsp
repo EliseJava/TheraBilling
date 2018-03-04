@@ -1,5 +1,10 @@
 <%@taglib prefix="es" uri="http://matc.edu/tags"%>
 <html>
+<head>
+    <meta charset="utf-8">
+    <title>TheraBilling</title>
+    <link rel="stylesheet" href="theraStyle.css">
+</head>
 <body>
 <form>
     <fieldset>

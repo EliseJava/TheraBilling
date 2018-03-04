@@ -15,20 +15,27 @@ import java.util.List;
 
 /**
  * A simple servlet to welcome the user.
- * @author pwaite
+ * @author Elise Strauss
  */
 
 @WebServlet(
-        urlPatterns = {"/searchUser"}
+        urlPatterns = {"/patientsShowAll"}
 )
 
-public class SearchUser extends HttpServlet {
+public class PatientsShowAll extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        GenericDao genericDao = new GenericDao(Patient.class);
+//        UserDao userDao = new UserDao();
+//        if (req.getParameter("submit").equals("search")) {
+//            req.setAttribute("users", userDao.getUsersByLastName(req.getParameter("searchTerm")));
+//        } else {
+//            req.setAttribute("users", userDao.getAllUsers());
+//        }
+//        RequestDispatcher dispatcher = req.getRequestDispatcher("/results.jsp");
+//        dispatcher.forward(req, resp);
 
-        Patient patient = (Patient)genericDao.getById(1);
+        GenericDao genericDao = new GenericDao(Patient.class);
 
         List<Patient> patients = (List<Patient>)genericDao.getAllByTable();
 
