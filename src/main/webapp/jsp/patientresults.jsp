@@ -16,7 +16,11 @@
 
 <html>
 <body>
-<main><H1>TheraBilling</H1></main>
+<head>
+    <meta charset="utf-8">
+    <title>Patient database</title>
+    <link rel="stylesheet" href="theraStyle.css">
+</head>
 
 <form action="patientMaintenance" method="GET">
 
@@ -74,3 +78,6 @@
 
 </body>
 </html>
+
+
+

@@ -1,6 +1,9 @@
 package edu.matc.entity;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.OrderBy;
+
+
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -44,6 +47,7 @@ public class Patient {
     private int postalCode;
 
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OrderBy(clause = "appointment_dt ASC")
     private Set<PatientProcedure> treatmentPlan = new HashSet<>();
 
     /**
