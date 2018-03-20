@@ -30,40 +30,26 @@ public class PatientMaintenance extends HttpServlet {
 
         final Logger logger = LogManager.getLogger(this.getClass());
 
-        RequestDispatcher dispatcher;
+        //RequestDispatcher dispatcher;
 
         String functionAdd = request.getParameter("add");
-        String functionDel = request.getParameter("Delete");
-        String functionChg = request.getParameter("Change");
+        String functionDel = request.getParameter("delete");
+        String functionChg = request.getParameter("change");
 
-        //String functAddingPat = request.getParameter("AddPatient");
-
-        request.setAttribute("firstName", request.getParameter("firstName"));
-        request.setAttribute("lastName", request.getParameter("lastName"));
-        //RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/test");
+        request.setAttribute("firstname", request.getParameter("firstname"));
+        request.setAttribute("lastname", request.getParameter("lastname"));
 
         if (functionAdd != null) {
             logger.info("Direct to add " + functionAdd);
-            dispatcher = request.getRequestDispatcher("/jsp/patientadd.jsp");
-            dispatcher.forward(request, response);
+            request.getRequestDispatcher("/jsp/patientadd.jsp").forward(request, response);
         } else if (functionDel != null) {
             logger.info("Direct to delete " + functionDel);
-            dispatcher = request.getRequestDispatcher("/jsp/patientadd.jsp");
-            dispatcher.forward(request, response);
+            request.getRequestDispatcher("/jsp/patientadd.jsp").forward(request, response);
         } else if (functionChg != null) {
             logger.info("Direct to change" + functionChg);
-            dispatcher = request.getRequestDispatcher("/jsp/patientadd.jsp");
-            dispatcher.forward(request, response);
-        } else {
-            dispatcher = request.getRequestDispatcher("/jsp/test.jsp");
-            dispatcher.forward(request, response);
+            request.getRequestDispatcher("/jsp/patientadd.jsp").forward(request, response);
         }
     }
-//        } else if (functAddingPat != null) {
-//            logger.info("Going to add a new patietn" + functAddingPat);
-//            dispatcher = request.getRequestDispatcher("/jsp/patientadd.jsp");
-//        }
-
 }
 
         // response.sendRedirect(url);

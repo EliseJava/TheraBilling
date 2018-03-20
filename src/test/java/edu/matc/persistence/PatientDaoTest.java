@@ -27,7 +27,6 @@ class PatientDaoTest {
      */
     GenericDao genericDao;
 
-
     /**
      * Sets up. Run sql to recreate the database before each test
      */
@@ -85,7 +84,6 @@ class PatientDaoTest {
         assertEquals(2, patient.size());
     }
 
-
     /**
      * Verify successful get by property - likes
      */
@@ -95,7 +93,6 @@ class PatientDaoTest {
         assertEquals(1, patient.size());
         //assertEquals(3, patient.get(0).getPatientId());
     }
-
 
     /**
      * Verify successful get by property - equals

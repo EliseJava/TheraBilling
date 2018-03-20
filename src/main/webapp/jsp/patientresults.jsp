@@ -1,36 +1,27 @@
-<%@include file="taglib.jsp"%>
-<c:set var="title" value="Search Results" />
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<c:set var="title" value="Patient Database" />
 <%@include file="head.jsp"%>
+<c:import url="head-tag.jsp" />
+<c:import url="java-script-table.jsp" />
 
-<head>
-    <meta charset="utf-8">
-    <title>Patient database</title>
-    <link rel="stylesheet" href="theraStyle.css">
-</head>
-
-<script type="text/javascript" class="init">
-    $(document).ready( function () {
-        $('#patientTable').DataTable();
-    } );
-</script>
-
-<html>
 <body>
-<head>
-    <meta charset="utf-8">
-    <title>Patient database</title>
-    <link rel="stylesheet" href="theraStyle.css">
-</head>
+<c:import url="header-tag.jsp" />
 
 <form action="patientMaintenance" method="GET">
-
-
     <br><br>
     First Name: <input type="text" name="firstname" required>
     Last Name : <input type="text" name="lastname" required>
     <input type="submit" name="add" value="Add">
-    <input type="submit" name="delete" value="Delete">
     <input type="submit" name="change" value="Change">
+</form>
+
+<form action ="patientDelete" method="GET">
+    <br>
+    Id: <input type="number" name="id" required>
+    <input type="submit" name="delete" value="Delete">
     <br>
 </form>
 
@@ -38,6 +29,7 @@
     <h2>Patients</h2>
     <table id="patientTable" class="display" cellspacing="0" width="100%">
         <thead>
+        <th>Id            </th>
         <th>First Name    </th>
         <th>Last Name     </th>
         <th>Diagnosis     </th>
@@ -53,6 +45,7 @@
         <tbody>
         <c:forEach var="patient" items="${patients}">
             <tr>
+                <td>${patient.id}</td>
                 <td>${patient.firstName}</td>
                 <td>${patient.lastName}</td>
                 <td>${patient.diagnosis}</td>
@@ -64,9 +57,9 @@
                 <td>
                     <c:forEach var="procedure" items="${patient.treatmentPlan}">
                         <ol ul style="list-style-type:square">
-                            <li>  date: ${procedure.appointmentDate} ${procedure.procedureCode} </li>
+                            <li>  date: ${procedure.procedureCode} ${procedure.appointmentDate} </li>
                         </ol>
-                        
+
                     </c:forEach>
                 </td>
             </tr>
@@ -76,6 +69,7 @@
     </table>
 </div>
 
+<c:import url="footer.jsp" />
 </body>
 </html>
 

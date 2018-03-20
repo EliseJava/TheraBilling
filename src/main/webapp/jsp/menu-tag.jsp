@@ -3,7 +3,8 @@
         <nav>
         <ul>
             <li><a href="#">Thing TODO today</a></li>
-            <li><a href="#">More stuff</a></li>
+            <li><a href="#">BreezeOMeter</a></li>
+            <li><a href="services/letter">Patient Letters</a></li>
 
         </ul>
         </nav>

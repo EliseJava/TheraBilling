@@ -17,7 +17,6 @@ import java.util.List;
  * A simple servlet to welcome the user.
  * @author Elise Strauss
  */
-
 @WebServlet(
         urlPatterns = {"/patientsShowAll"}
 )

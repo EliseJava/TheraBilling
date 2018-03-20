@@ -31,6 +31,9 @@ public class Patient {
     @Column(name = "diagnosis")
     private String diagnosis;
 
+    @Column(name = "notes")
+    private String notes;
+
     @Column(name = "referred_by")
     private String referredBy;
 
@@ -141,6 +144,25 @@ public class Patient {
     public void setDiagnosis(String diagnosis) {
         this.diagnosis = diagnosis;
     }
+
+    /**
+     * Gets notes.
+     *
+     * @return the notes
+     */
+    public String getNotes() {
+        return notes;
+    }
+
+    /**
+     * Sets notes.
+     *
+     * @param notes the notes
+     */
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
 
     /**
      * Gets referred by.
