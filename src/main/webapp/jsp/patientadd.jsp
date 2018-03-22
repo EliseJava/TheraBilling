@@ -26,6 +26,7 @@
     <br>Postal Code
     <br><input type="number" name="addCode" required><br>
     <br><br>
+
     <input type="submit" value="Add Patient">
 </form>
 

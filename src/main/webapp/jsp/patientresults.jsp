@@ -10,20 +10,29 @@
 <body>
 <c:import url="header-tag.jsp" />
 
-<form action="patientMaintenance" method="GET">
-    <br><br>
-    First Name: <input type="text" name="firstname" required>
-    Last Name : <input type="text" name="lastname" required>
-    <input type="submit" name="add" value="Add">
-    <input type="submit" name="change" value="Change">
-</form>
 
-<form action ="patientDelete" method="GET">
+<div style="float:left; width:50%;">
+    <form action="patientMaintenance" method="GET">
+        <br>
+        First Name: <input type="text" name="firstname" required>
+        Last Name : <input type="text" name="lastname" required>
+        <input type="submit" name="add" value="Add">
+        <br>
+    </form>
+</div>
+<div style="float:left; width:50%;">
+    <form action ="patientUpdateDelete" method="GET">
+        <br>
+        Id: <input type="number" name="id" required>
+        <input type="submit" name="update" value="Change/Add Appointments">
+        <input type="submit" name="delete" value="Delete">
+        <br>
+    </form>
+</div>
+
+<div style="float:left; width:100%;">
     <br>
-    Id: <input type="number" name="id" required>
-    <input type="submit" name="delete" value="Delete">
-    <br>
-</form>
+</div>
 
 <div class="container-fluid">
     <h2>Patients</h2>
@@ -39,7 +48,6 @@
         <th>State         </th>
         <th>Postal_Code   </th>
         <th>Procedure Code/Appointment</th>
-
 
         </thead>
         <tbody>
@@ -57,7 +65,7 @@
                 <td>
                     <c:forEach var="procedure" items="${patient.treatmentPlan}">
                         <ol ul style="list-style-type:square">
-                            <li>  date: ${procedure.procedureCode} ${procedure.appointmentDate} </li>
+                            <li>  code: ${procedure.procedureCode} date: ${procedure.appointmentDate} </li>
                         </ol>
 
                     </c:forEach>

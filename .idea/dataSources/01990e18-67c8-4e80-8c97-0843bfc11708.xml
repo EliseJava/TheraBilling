@@ -953,7 +953,7 @@
     </column>
     <column id="240" parent="233" name="diagnosis">
       <Position>4</Position>
-      <DataType>varchar(30)|0</DataType>
+      <DataType>varchar(100)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
     <column id="241" parent="233" name="notes">

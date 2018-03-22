@@ -23,7 +23,7 @@ header a {
 
 /* Column */
 .col {
-  background: red;
+  background: darkblue;
   display: block;
   float:left;
   margin: 1% 0 1% 1.6%;
@@ -42,6 +42,7 @@ header a {
 .grid_2_of_4{ width: 49.2% }
 .grid_3_of_4{ width: 74.6% }
 .grid_4_of_4{ width: 100% }
+
 
 /* Full Width below 768 pixels */
 @media only screen and (max-width: 768px) {
