@@ -16,7 +16,7 @@
         <br>
         First Name: <input type="text" name="firstname" required>
         Last Name : <input type="text" name="lastname" required>
-        <input type="submit" name="add" value="Add">
+        <input type="submit" name="add" value="Add a new Patient">
         <br>
     </form>
 </div>
@@ -47,7 +47,7 @@
         <th>City          </th>
         <th>State         </th>
         <th>Postal_Code   </th>
-        <th>Procedure Code/Appointment</th>
+        <th>Procedure Code/Appointments</th>
 
         </thead>
         <tbody>
@@ -65,7 +65,7 @@
                 <td>
                     <c:forEach var="procedure" items="${patient.treatmentPlan}">
                         <ol ul style="list-style-type:square">
-                            <li>  code: ${procedure.procedureCode} date: ${procedure.appointmentDate} </li>
+                            <li>  ${procedure.procedureCode}   /   ${procedure.appointmentDate} </li>
                         </ol>
 
                     </c:forEach>
@@ -77,8 +77,8 @@
     </table>
 </div>
 
-<c:import url="footer.jsp" />
 </body>
+<c:import url="footer.jsp" />
 </html>
 
 

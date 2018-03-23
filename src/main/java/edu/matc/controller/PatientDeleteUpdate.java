@@ -15,14 +15,17 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * A simple servlet to welcome the user.
+ * This servlet will delete a patient and all his appointments
+ * or
+ * Change patient information and delete/insert/change a patients appointments
+ *
  * @author Elise Strauss
  */
 @WebServlet(
         urlPatterns = {"/patientUpdateDelete"}
 )
 
-public class PatientUpdateDelete extends HttpServlet {
+public class PatientDeleteUpdate extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -39,17 +42,20 @@ public class PatientUpdateDelete extends HttpServlet {
         patient = (Patient)genericDao.getById(id);
         logger.info("diagnosis: " + patient.getDiagnosis());
 
+        //a Patient and all is appointments will be deleted
         if (functionDel != null) {
             logger.info("Direct to delete " + functionDel);
             genericDao.delete(patient);
             RequestDispatcher dispatcher = request.getRequestDispatcher("patientsShowAll");
             dispatcher.forward(request, response);
         } else if (functionChg != null) {
+            //Here you can change patient information; add/change/delete appointments
             logger.info("Direct to change" + functionChg);
+            ///////request.setAttribute("patient", patient);
 
-            request.setAttribute("patient", patient);
-            request.setAttribute("diagnosis", patient.getDiagnosis());
-            request.getRequestDispatcher("/jsp/patientchange.jsp").forward(request, response);
+            request.getSession().setAttribute("sharedId", id); //
+
+            request.getRequestDispatcher("patientShowPatient").forward(request, response);
 
 
         }

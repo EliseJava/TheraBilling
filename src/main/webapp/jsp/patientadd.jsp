@@ -14,7 +14,7 @@
     <br>First Name<input type="text" name="addFirstName" value=${firstname}>  Last Name<input type="text" name="addLastName" value=${lastname}>
     <br>
     <br>Diagnosis
-    <br><input type="text" name="addDiagnosis" autofocus="autofocus" required><br>
+    <br><input type="text" name="addDiagnosis" autofocus="autofocus" required>  Evaluation Appointment Date: <input type="datetime-local" name="addAppointment" required><br>
     <br>Referred by
     <br><input type="text" name="addRefferedBy" required><br>
     <br>Street Name

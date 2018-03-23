@@ -1,7 +1,6 @@
 header {
 	background-color: 	#fff;
-	/* background-image: "#"; */
-	width: 96%;
+    width: 96%;
 	padding: 25px;
 	text-align: center;	
     border-radius: 5px;
@@ -167,7 +166,5 @@ footer{
     padding-top: 5%;
     margin-top: 5%;
     border-radius: 5px;
-    border-radius: 5px;
     box-shadow: 0 0, 0 3px 20px rgba(0, 0, 0, .35);
 }
-
