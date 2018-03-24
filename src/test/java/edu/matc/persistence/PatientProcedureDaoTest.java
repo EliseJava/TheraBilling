@@ -8,6 +8,8 @@ import org.apache.logging.log4j.Logger;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import javax.ejb.Local;
+import java.sql.Time;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -53,10 +55,13 @@ class PatientProcedureDaoTest {
      */
     @Test
     void getAllProceduresForPatient() {
-        List<PatientProcedure> procedure = (List<PatientProcedure>)genericDao.getByColumnInt("patient", 1);
+        List<PatientProcedure> procedure =
+                (List<PatientProcedure>)genericDao.getByColumnInt("patient", 1);
         assertEquals(3, procedure.size());
+        for (PatientProcedure token : procedure) {
+            System.out.println(token);
+        }
     }
-
 
     /**
      * Gets the all procedure on the database
@@ -65,6 +70,33 @@ class PatientProcedureDaoTest {
     void getAllProcedures() {
         List<PatientProcedure> procedure = (List<PatientProcedure>)genericDao.getAllByTable();
         assertEquals(7, procedure.size());
+           }
+
+    /**
+     * Get all today's appointments
+     */
+    @Test
+    void getDailyAppointments() {
+
+        String    startime = "T00:00:00.000";
+        String    endtime  = "T23:59:00.000";
+
+        //LocalDate today = LocalDate.now();
+        String date = "2018-02-22";
+        LocalDate today = LocalDate.parse(date);
+
+        LocalDateTime startdate = LocalDateTime.parse(today + startime);
+        LocalDateTime enddate = LocalDateTime.parse(today + endtime);
+
+
+        List<PatientProcedure> procedure =
+                (List<PatientProcedure>)genericDao.getProcByDate("appointmentDate", startdate, enddate);
+
+        assertEquals(2, procedure.size());
+
+        for (PatientProcedure index : procedure) {
+            logger.info("Appointments: " + index);
+        }
     }
 
     /**

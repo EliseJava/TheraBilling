@@ -9,9 +9,9 @@
 
 		<div style="float:left; width:50%;">
 
-			<a href="#" class="button"><span>Daily Schedule</span></a>
+			<a href="dailySchedule" class="button"><span>Daily Schedule</span></a>
 			<br>
-			<a href="#" class="button"><span>Treatment Plans</span></a>
+			<a href="#" class="button"><span>Procedure Codes</span></a>
 		</div>
 
 		<div style="float:left; width:50%;">

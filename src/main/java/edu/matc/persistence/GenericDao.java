@@ -1,25 +1,24 @@
 package edu.matc.persistence;
 
-import java.io.Serializable;
-import java.util.ArrayList;
+import java.time.LocalDateTime;
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Expression;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
+
+import javax.persistence.*;
 
 
+import edu.matc.entity.Patient;
+import edu.matc.entity.PatientProcedure;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-
 /**
- * A generic DAO somewhat inspired by http://rodrigouchoa.wordpress.com
- *
+ * A generic DAO somewhat inspired by http://rodrigouchoa.wordpress.com.  This DAO will serve
+ * all the database needs for TheraBilling application
  */
 public class GenericDao<T> {
 
@@ -28,7 +27,7 @@ public class GenericDao<T> {
     SessionFactory sessionFactory = SessionFactoryProvider.getSessionFactory();
 
     /**
-     * Instantiates a new Generic dao.     *
+     * Instantiates a new Generic dao.
      * @param type the entity type, for example, User.
      */
     public GenericDao(Class<T> type) {
@@ -40,15 +39,15 @@ public class GenericDao<T> {
      * @return the all entities
      */
     public List<T> getAllByTable() {
-        Session session = getSession();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
 
-        CriteriaQuery<T> query = builder.createQuery(type);
-        Root<T> root = query.from(type);
+        Session          session = getSession();
+        CriteriaBuilder  builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query   = builder.createQuery(type);
+        Root<T>          root    = query.from(type);
+
         List<T> list = session.createQuery(query).getResultList();
         session.close();
         return list;
-
     }
 
     /**
@@ -71,12 +70,14 @@ public class GenericDao<T> {
 
         logger.debug("Searching for Patient with {} = {}",  column, term);
 
-        Session session = sessionFactory.openSession();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<T> query = builder.createQuery(type);
-        Root<T> root = query.from(type);
+        Session            session      = sessionFactory.openSession();
+        CriteriaBuilder    builder      = session.getCriteriaBuilder();
+        CriteriaQuery<T>   query        = builder.createQuery(type);
+        Root<T>            root         = query.from(type);
         Expression<String> propertyPath = root.get(column);
+
         query.where(builder.like(propertyPath,term + "%"));
+
         List<T> list = session.createQuery(query).getResultList();
         session.close();
 
@@ -85,16 +86,17 @@ public class GenericDao<T> {
 
     /**
      * This function gets by a column, and searches by a term.
-     * @return a list of users
+     * @return a list of items
      */
     public List<T> getByColumnInt(String column, int term) {
 
         logger.debug("Searching for Patient with {} = {}",  column, term);
 
-        Session session = sessionFactory.openSession();
-        CriteriaBuilder builder = session.getCriteriaBuilder();
-        CriteriaQuery<T> query = builder.createQuery(type);
-        Root<T> root = query.from(type);
+        Session          session = sessionFactory.openSession();
+        CriteriaBuilder  builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query   = builder.createQuery(type);
+        Root<T>          root    = query.from(type);
+
         query.select(root).where(builder.equal(root.get(column), term));
         List<T> list = session.createQuery( query ).getResultList();
         session.close();
@@ -127,6 +129,24 @@ public class GenericDao<T> {
         session.close();
 
         return patients;
+    }
+
+    /**
+     * Gets all appointments for today    *
+     * @return the all entities
+     */
+    public List<T> getProcByDate(String column, LocalDateTime term1, LocalDateTime term2)  {
+
+        Session          session = getSession();
+        CriteriaBuilder  builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query   = builder.createQuery(type);
+        Root<T>          root    = query.from(type);
+
+        query.select(root).where(builder.between(root.get(column), term1, term2));
+
+        List<T> list = session.createQuery(query).getResultList();
+        session.close();
+        return list;
     }
 
 

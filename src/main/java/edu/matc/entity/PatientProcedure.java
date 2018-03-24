@@ -66,7 +66,6 @@ public class PatientProcedure {
 
     /**
      * Gets procedure code.
-     *
      * @return the procedure code
      */
     public int getProcedureCode() {

@@ -986,58 +986,53 @@
       <DataType>int(6)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="247" parent="233" name="column_11">
-      <Position>11</Position>
-      <DataType>int(11)|0</DataType>
-      <ColumnKind>normal</ColumnKind>
-    </column>
-    <key id="248" parent="233" name="PRIMARY">
+    <key id="247" parent="233" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="249" parent="234" name="id">
+    <column id="248" parent="234" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="250" parent="234" name="procedure_code">
+    <column id="249" parent="234" name="procedure_code">
       <Position>2</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>int(5)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="251" parent="234" name="appointment_dt">
+    <column id="250" parent="234" name="appointment_dt">
       <Position>3</Position>
       <DataType>datetime|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="252" parent="234" name="patient_id">
+    <column id="251" parent="234" name="patient_id">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="253" parent="234" name="patientprocedure_pp_id_uindex">
+    <index id="252" parent="234" name="patientprocedure_pp_id_uindex">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="254" parent="234" name="patientprocedure_patient_patient_id_fk">
+    <index id="253" parent="234" name="patientprocedure_patient_patient_id_fk">
       <ColNames>patient_id</ColNames>
     </index>
-    <key id="255" parent="234" name="PRIMARY">
+    <key id="254" parent="234" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="256" parent="234" name="patientprocedure_pp_id_uindex">
+    <key id="255" parent="234" name="patientprocedure_pp_id_uindex">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>patientprocedure_pp_id_uindex</UnderlyingIndexName>
     </key>
-    <foreign-key id="257" parent="234" name="patientprocedure_patient_patient_id_fk">
+    <foreign-key id="256" parent="234" name="patientprocedure_patient_patient_id_fk">
       <ColNames>patient_id</ColNames>
       <RefSchemaName>test_therabilling</RefSchemaName>
       <RefTableName>patient</RefTableName>
@@ -1045,89 +1040,89 @@
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="258" parent="235" name="id">
+    <column id="257" parent="235" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="259" parent="235" name="role_type">
+    <column id="258" parent="235" name="role_type">
       <Position>2</Position>
       <DataType>varchar(15)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="260" parent="235" name="user_name">
+    <column id="259" parent="235" name="user_name">
       <Position>3</Position>
       <DataType>varchar(15)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="261" parent="235" name="user_id">
+    <column id="260" parent="235" name="user_id">
       <Position>4</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="262" parent="235" name="role_id_uindex">
+    <index id="261" parent="235" name="role_id_uindex">
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="263" parent="235" name="role_user_id_fk">
+    <index id="262" parent="235" name="role_user_id_fk">
       <ColNames>user_id</ColNames>
     </index>
-    <key id="264" parent="235" name="PRIMARY">
+    <key id="263" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="265" parent="235" name="role_id_uindex">
+    <key id="264" parent="235" name="role_id_uindex">
       <ColNames>id</ColNames>
       <UnderlyingIndexName>role_id_uindex</UnderlyingIndexName>
     </key>
-    <foreign-key id="266" parent="235" name="role_user_id_fk">
+    <foreign-key id="265" parent="235" name="role_user_id_fk">
       <ColNames>user_id</ColNames>
       <RefSchemaName>test_therabilling</RefSchemaName>
       <RefTableName>user</RefTableName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="267" parent="236" name="id">
+    <column id="266" parent="236" name="id">
       <Position>1</Position>
       <DataType>int(11)|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="268" parent="236" name="first_name">
+    <column id="267" parent="236" name="first_name">
       <Position>2</Position>
       <DataType>varchar(25)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="269" parent="236" name="last_name">
+    <column id="268" parent="236" name="last_name">
       <Position>3</Position>
       <DataType>varchar(30)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="270" parent="236" name="user_name">
+    <column id="269" parent="236" name="user_name">
       <Position>4</Position>
       <DataType>varchar(15)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <column id="271" parent="236" name="password">
+    <column id="270" parent="236" name="password">
       <Position>5</Position>
       <DataType>varchar(30)|0</DataType>
       <ColumnKind>normal</ColumnKind>
     </column>
-    <index id="272" parent="236" name="users_user_name_uindex">
+    <index id="271" parent="236" name="users_user_name_uindex">
       <ColNames>user_name</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="273" parent="236" name="PRIMARY">
+    <key id="272" parent="236" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <key id="274" parent="236" name="users_user_name_uindex">
+    <key id="273" parent="236" name="users_user_name_uindex">
       <ColNames>user_name</ColNames>
       <UnderlyingIndexName>users_user_name_uindex</UnderlyingIndexName>
     </key>

@@ -71,7 +71,6 @@
                     </c:forEach>
                 </td>
             </tr>
-
         </c:forEach>
         </tbody>
     </table>
