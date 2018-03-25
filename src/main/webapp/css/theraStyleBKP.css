@@ -1,7 +1,6 @@
 header {
 	background-color: 	#fff;
-	/* background-image: "#"; */
-	width: 96%;
+    width: 96%;
 	padding: 25px;
 	text-align: center;	
     border-radius: 5px;
@@ -21,13 +20,12 @@ header a {
   padding: 0px;
 }
 
-
 /* Column */
 .col {
-    background: darkblue;
-    display: block;
-    float:left;
-    margin: 1% 0 1% 1.6%;
+  background: darkblue;
+  display: block;
+  float:left;
+  margin: 1% 0 1% 1.6%;
 }
 
 .col:first-child { margin-left: 0 !important; }
@@ -43,6 +41,7 @@ header a {
 .grid_2_of_4{ width: 49.2% }
 .grid_3_of_4{ width: 74.6% }
 .grid_4_of_4{ width: 100% }
+
 
 /* Full Width below 768 pixels */
 @media only screen and (max-width: 768px) {
@@ -165,9 +164,7 @@ footer{
 	width: 96%;
 	padding: 25px;
     padding-top: 5%;
-    margin-top: 10%;
-    border-radius: 5px;
+    margin-top: 5%;
     border-radius: 5px;
     box-shadow: 0 0, 0 3px 20px rgba(0, 0, 0, .35);
 }
-
