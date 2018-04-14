@@ -274,7 +274,6 @@ public class Patient {
 
     /**
      * Add procedures.
-     *
      * @param patientProcedures the patient procedures
      */
     public void addProcedures(PatientProcedure patientProcedures) {

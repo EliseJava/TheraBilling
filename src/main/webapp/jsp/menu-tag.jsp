@@ -1,11 +1,9 @@
 <div id="sidebar">
-
-        <nav>
+    <nav>
         <ul>
-            <li><a href="#">Thing TODO today</a></li>
-            <li><a href="#">BreezeOMeter</a></li>
-            <li><a href="services/letter">Patient Letters</a></li>
-
+            <li><a href="services/letters">Patient Letters</a></li>
+            <li><a href="https://www.latlong.net/">Lat/Long Finder</a></li>
+            <li><a href="https://greatist.com/health/ultimate-guide-good-posture">Posture</a></li>
         </ul>
-        </nav>
+    </nav>
 </div>

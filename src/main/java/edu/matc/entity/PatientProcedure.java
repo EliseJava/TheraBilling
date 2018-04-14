@@ -21,6 +21,7 @@ public class PatientProcedure {
 
     @Column(name = "procedure_code")
     private int procedureCode;
+
     @Column(name = "appointment_dt")
     private LocalDateTime appointmentDate;
 

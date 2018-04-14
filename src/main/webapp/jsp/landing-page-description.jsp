@@ -1,6 +1,4 @@
 <div><pre><h2>
-
-
                 Mrs. Robijn and partner has over 20 years of experience in the
                 Physical Therapy business.
 
