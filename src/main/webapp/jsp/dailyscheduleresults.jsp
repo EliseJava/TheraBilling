@@ -24,12 +24,12 @@
         <tbody>
         <c:forEach var="items" items="${schedule}">
             <tr>
-                <form action="billingStatementCreate" method="GET">
+                <form action="billingControl" method="GET">
                     <td>${items.patient.getFirstName()}</td>
                     <td>${items.patient.getLastName()}</td>
                     <td>${items.procedureCode}</td>
                     <td>${items.appointmentDate}</td>
-                    <%--<td><input type="hidden"   name="AppointId"   value=${items.id}><input type="submit" name="checkout"  value="CHECKOUT"></td>--%>
+                    <td><input type="hidden"   name="AppointId"   value=${items.id}><input type="submit" name="checkout"  value="CHECKOUT"></td>
                 </form>
             </tr>
         </c:forEach>

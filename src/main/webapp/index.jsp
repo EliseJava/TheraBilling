@@ -5,11 +5,12 @@
 <c:import url="jsp/head-tag.jsp" />
 
 <body>
-<div id="wrap">
-    <c:import url="jsp/header-tag.jsp" />
-    <c:import url="jsp/menu-tag.jsp" />
-    <c:import url="content.jsp" />
-    <c:import url="jsp/footer.jsp" />
-</div>
+    <div id="wrap">
+        <c:import url="jsp/header-tag.jsp" />
+        <c:import url="jsp/menu-tag.jsp" />
+        <c:import url="content.jsp" />
+        <c:import url="jsp/footer.jsp" />
+    </div>
 </body>
+
 </html>
