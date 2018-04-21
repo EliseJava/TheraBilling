@@ -65,7 +65,7 @@
                 <td>
                     <c:forEach var="procedure" items="${patient.treatmentPlan}">
                         <ol ul style="list-style-type:square">
-                            <li>  ${procedure.procedureCode}   /   ${procedure.appointmentDate} </li>
+                            <li> ${procedure.appointmentDate} / ${procedure.procedureCode.code} / ${procedure.procedureCode.description} </li>
                         </ol>
 
                     </c:forEach>

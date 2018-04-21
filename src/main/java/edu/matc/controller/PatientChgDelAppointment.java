@@ -1,7 +1,7 @@
 package edu.matc.controller;
 
-import edu.matc.entity.Patient;
 import edu.matc.entity.PatientProcedure;
+import edu.matc.entity.ProcedureCode;
 import edu.matc.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.time.LocalDateTime;
 
 /**
- * This servlet will add new appointments for a patient.
+ * This servlet will change or delete an appointment for a patient
  *
  * @author Elise Strauss
  */
@@ -28,28 +28,29 @@ public class PatientChgDelAppointment extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        final Logger logger   = LogManager.getLogger(this.getClass());
+        final Logger logger = LogManager.getLogger(this.getClass());
 
-        String functionChg = request.getParameter("change");
-        String functionDel = request.getParameter("delete");
+        String functionChg  = request.getParameter("change");
+        String functionDel  = request.getParameter("delete");
 
-        int code       = Integer.parseInt(request.getParameter("ProcCode"));
-        String newDate = request.getParameter("AppointDate");
-
-        int AppointId = Integer.parseInt(request.getParameter("AppointId"));
+        int code            = Integer.parseInt(request.getParameter("ProcCode"));
+        String newDate      = request.getParameter("AppointDate");
+        int AppointId       = Integer.parseInt(request.getParameter("AppointId"));
 
         logger.info("Delete this appointment id: " + AppointId);
         logger.info("code to chg/del           : " + code);
         logger.info("date to chg/del           : " + newDate);
 
-        GenericDao genericDao = new GenericDao(PatientProcedure.class);
+        GenericDao genericDao           = new GenericDao(PatientProcedure.class);
+        PatientProcedure appointment    = (PatientProcedure)genericDao.getById(AppointId);
 
-        PatientProcedure appointment   = (PatientProcedure)genericDao.getById(AppointId);
+        GenericDao genericDao2          = new GenericDao(ProcedureCode.class);
+        ProcedureCode newProcedureCode  = (ProcedureCode)genericDao2.getOneEntityByColumnInt("code", code);
 
         if (functionDel != null) {
             genericDao.delete(appointment);
         } else if (functionChg != null) {
-            appointment.setProcedureCode(code);
+            appointment.setProcedureCode(newProcedureCode);
             appointment.setAppointmentDate(LocalDateTime.parse(newDate));
             genericDao.saveOrUpdate(appointment);
         }

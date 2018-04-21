@@ -51,13 +51,9 @@ public class PatientDeleteUpdate extends HttpServlet {
         } else if (functionChg != null) {
             //Here you can change patient information; add/change/delete appointments
             logger.info("Direct to change" + functionChg);
-            ///////request.setAttribute("patient", patient);
 
-            request.getSession().setAttribute("sharedId", id); //
-
+            request.getSession().setAttribute("sharedId", id);
             request.getRequestDispatcher("patientShowPatient").forward(request, response);
-
-
         }
     }
 }

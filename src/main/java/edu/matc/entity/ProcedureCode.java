@@ -32,7 +32,6 @@ public class ProcedureCode {
      * Instantiates a new procedure code.
      */
     public ProcedureCode() {
-
     }
 
     /**
@@ -47,6 +46,15 @@ public class ProcedureCode {
         this.description = description;
         this.unitPrice = price;
     }
+    /**
+     * Gets procedure code id.
+     *
+     * @return the procedure code id
+     */
+    public int getId() {
+        return id;
+    }
+
 
     /**
      * Gets code.

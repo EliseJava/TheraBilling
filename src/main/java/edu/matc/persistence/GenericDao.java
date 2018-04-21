@@ -105,6 +105,29 @@ public class GenericDao<T> {
     }
 
     /**
+     * This function gets by a column, and searches by a term.
+     *
+     *
+     * @return an entity.
+     */
+    public <T> T getOneEntityByColumnInt(String column, int term) {
+
+        logger.debug("Searching for Patient with {} = {}",  column, term);
+
+        Session          session = sessionFactory.openSession();
+        CriteriaBuilder  builder = session.getCriteriaBuilder();
+        CriteriaQuery query   = builder.createQuery(type);
+        Root          root    = query.from(type);
+
+        query.select(root).where(builder.equal(root.get(column), term));
+        T entity = (T) session.createQuery( query ).getSingleResult();
+        session.close();
+
+        return entity;
+    }
+
+
+    /**
      * Get patient(s) by last name or start of last name.
      * OR
      * Get all patients if no last name provided
@@ -132,7 +155,10 @@ public class GenericDao<T> {
     }
 
     /**
-     * Gets all appointments for today    *
+     * Gets all appointments for today where the the appointment was not billed yet.
+     *
+     * Billed appointments will have a billing_status_active = TRUE
+     *
      * @return the all entities
      */
     public List<T> getProcByDate(String column, LocalDateTime term1, LocalDateTime term2)  {
@@ -142,7 +168,8 @@ public class GenericDao<T> {
         CriteriaQuery<T> query   = builder.createQuery(type);
         Root<T>          root    = query.from(type);
 
-        query.select(root).where(builder.between(root.get(column), term1, term2));
+        query.select(root).where(builder.between(root.get(column), term1, term2),
+                                 builder.isFalse(root.get("billingStatusActive")));
 
         List<T> list = session.createQuery(query).getResultList();
         session.close();
@@ -191,6 +218,7 @@ public class GenericDao<T> {
         transaction.commit();
         session.close();
     }
+
 
     /**
      * Returns an open session from the SessionFactory

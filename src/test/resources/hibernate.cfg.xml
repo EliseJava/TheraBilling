@@ -21,7 +21,9 @@
 
         <mapping class="edu.matc.entity.Patient"/>
         <mapping class="edu.matc.entity.PatientProcedure"/>
-
+        <mapping class="edu.matc.entity.ProcedureCode"/>
+        <mapping class="edu.matc.entity.Role"/>
+        <mapping class="edu.matc.entity.User"/>
 
     </session-factory>
 

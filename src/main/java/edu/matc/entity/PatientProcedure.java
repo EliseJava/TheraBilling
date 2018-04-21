@@ -19,14 +19,20 @@ public class PatientProcedure {
     @GenericGenerator(name ="native", strategy = "native")
     private int id;
 
-    @Column(name = "procedure_code")
-    private int procedureCode;
+    @OneToOne
+    @JoinColumn(name = "procedure_id",
+            foreignKey = @ForeignKey(name = "patientprocedure_procedurecode_id___fk"))
+    private ProcedureCode procedureCode;
 
     @Column(name = "appointment_dt")
     private LocalDateTime appointmentDate;
 
+    @Column(name = "billing_status_active")
+    private boolean billingStatusActive;
+
     @ManyToOne
     private Patient patient;
+
 
     /**
      * Instantiates a new Patient procedures.
@@ -37,12 +43,12 @@ public class PatientProcedure {
     /**
      * Instantiates a new Patient procedures.
      *
-     * @param procedureCode   the procedure code
+     * @param procCode        the procedure code object
      * @param appointmentDate the appointment date
-     * @param patient         the patient
+     * @param patient         the patient object
      */
-    public PatientProcedure(int procedureCode, LocalDateTime appointmentDate, Patient patient) {
-        this.procedureCode = procedureCode;
+    public PatientProcedure(ProcedureCode procCode, LocalDateTime appointmentDate, Patient patient) {
+        this.procedureCode = procCode;
         this.appointmentDate = appointmentDate;
         this.patient = patient;
     }
@@ -66,23 +72,6 @@ public class PatientProcedure {
     }
 
     /**
-     * Gets procedure code.
-     * @return the procedure code
-     */
-    public int getProcedureCode() {
-        return procedureCode;
-    }
-
-    /**
-     * Sets procedure code.
-     *
-     * @param procedureCode the procedure code
-     */
-    public void setProcedureCode(int procedureCode) {
-        this.procedureCode = procedureCode;
-    }
-
-    /**
      * Gets appointment date.
      *
      * @return the appointment date
@@ -101,6 +90,32 @@ public class PatientProcedure {
     }
 
     /**
+     * Is billing status active boolean.
+     *
+     * True=bill the patient
+     *
+     * False=Not a billable item
+     *
+     * @return the boolean
+     */
+    public boolean isBillingStatusActive() {
+        return billingStatusActive;
+    }
+
+    /**
+     * Sets billing status active.
+     *
+     * True=bill the patient
+     *
+     * False=Not a billable item
+     *
+     * @param billingStatusActive the billing status active
+     */
+    public void setBillingStatusActive(boolean billingStatusActive) {
+        this.billingStatusActive = billingStatusActive;
+    }
+
+    /**
      * Gets patient.
      *
      * @return the patient
@@ -116,6 +131,24 @@ public class PatientProcedure {
      */
     public void setPatient(Patient patient) {
         this.patient = patient;
+    }
+
+    /**
+     * Gets procedure code.
+     *
+     * @return the procedure code
+     */
+    public ProcedureCode getProcedureCode() {
+        return procedureCode;
+    }
+
+    /**
+     * Sets procedure code.
+     *
+     * @param procedureCode the procedure code
+     */
+    public void setProcedureCode(ProcedureCode procedureCode) {
+        this.procedureCode = procedureCode;
     }
 
     @Override

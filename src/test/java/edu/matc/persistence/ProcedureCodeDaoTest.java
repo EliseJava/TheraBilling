@@ -1,6 +1,5 @@
 package edu.matc.persistence;
 
-
 import edu.matc.entity.Patient;
 import edu.matc.entity.PatientProcedure;
 import edu.matc.entity.ProcedureCode;
@@ -11,17 +10,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
- * This program is testing the PatientDao
+ * This program is testing the Procedure Code
  */
-class PatientDaoTest {
+class ProcedureCodeDaoTest {
 
     private final Logger logger = LogManager.getLogger(this.getClass());
 
@@ -35,59 +32,30 @@ class PatientDaoTest {
      */
     @BeforeEach
     void setUp() {
-        genericDao = new GenericDao(Patient.class);
+        genericDao = new GenericDao(ProcedureCode.class);
 
         Database database = Database.getInstance();
         database.runSQL("cleanpatientdb.sql");
     }
 
     /**
-     * Verify a patient billing charges is added up correctly.
+     * Verify a procedure code by id.
      */
     @Test
-    void getPatientBillingCharges() {
-        Patient patient = (Patient)genericDao.getById(1);
-        assertNotNull(patient);
-        assertEquals("Calvin", patient.getFirstName());
-
-        float amountOwned = 0;
-
-        Set<PatientProcedure> treatmentPlan = patient.getTreatmentPlan();
-
-        for (PatientProcedure object : treatmentPlan) {
-            if (object.isBillingStatusActive()) {
-                logger.info("charges for patient:   " + object.getProcedureCode().getUnitPrice());
-                amountOwned = amountOwned + object.getProcedureCode().getUnitPrice();
-            }
-        }
-
-        assertEquals(300.00, amountOwned);
+    void getProcedureCodeByIdIsSuccessful() {
+        ProcedureCode code = (ProcedureCode)genericDao.getById(6);
+        logger.info(code.getDescription());
+        assertNotNull(code);
+        assertEquals(97001, code.getCode());
     }
 
     /**
-     * Verify a patient is returned correctly by their id.
-     */
-    @Test
-    void getPatientByIdIsSuccessful() {
-        Patient patient = (Patient)genericDao.getById(1);
-        assertNotNull(patient);
-        assertEquals("Calvin", patient.getFirstName());
-
-        logger.info(patient.getTreatmentPlan());
-//        List<PatientProcedure> list1 = patient.getTreatmentPlan();
-//        for (PatientProcedure object : list1) {
-//            logger.info("charges for patient 1" + object.getProcedureCode().getUnitPrice());
-//
-//        }
-    }
-
-    /**
-     * Gets ALL patient in the database.
+     * Gets ALL procedure codes in the database.
      */
     @Test
     void getAllAreSuccessful() {
-        List<Patient> patient = (List<Patient>)genericDao.getAllByTable();
-        assertEquals(5, patient.size());
+        List<ProcedureCode> codes = (List<ProcedureCode>)genericDao.getAllByTable();
+        assertEquals(12, codes.size());
     }
 
     /**
@@ -100,17 +68,25 @@ class PatientDaoTest {
     }
 
     /**
-     * Gets patient by like lastname
+     * Gets the id of the procedure code
      */
     @Test
-    void getPatientsByLastNameIsSuccessful() {
-        List<Patient> patient = (List<Patient>)genericDao.getAllPatients("R");
-        assertEquals(2, patient.size());
+    void getIdOfProcedureCodeIsSuccessful() {
+
+        List<ProcedureCode> code = (List<ProcedureCode>)genericDao.getByColumnInt("code", 97018);
+        ProcedureCode newcode = code.get(0);
+        assertEquals(10, newcode.getId());
+
+        ProcedureCode code1 = (ProcedureCode)genericDao.getOneEntityByColumnInt("code", 97018);
+        assertEquals(10, code1.getId());
+
+
     }
 
     /**
-     * Gets patient by like lastname
-     */
+     * Gets
+     *
+     * */
     @Test
     void getPatientsByColumnIsSuccessful() {
         List<Patient> patient = (List<Patient>)genericDao.getByColumn("lastName", "R");

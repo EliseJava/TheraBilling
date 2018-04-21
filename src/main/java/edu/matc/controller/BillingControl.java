@@ -2,6 +2,7 @@ package edu.matc.controller;
 
 import edu.matc.entity.Patient;
 import edu.matc.entity.PatientProcedure;
+import edu.matc.entity.ProcedureCode;
 import edu.matc.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,7 +19,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * A simple servlet to welcome the user.
+ * This servlet will mark a scheduled appointment as billable after the
+ * patient was checked out after treatment was received.
+ *
  * @author Elise Strauss
  */
 @WebServlet(
@@ -34,8 +37,13 @@ public class BillingControl extends HttpServlet {
         int id = Integer.parseInt(request.getParameter("AppointId"));
         logger.info("id ..." + id);
 
+        GenericDao genericDao = new GenericDao(ProcedureCode.class);
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("patientsShowAll");
+        PatientProcedure procedureToUpdate = (PatientProcedure)genericDao.getById(id);
+        procedureToUpdate.setBillingStatusActive(true);
+        genericDao.saveOrUpdate(procedureToUpdate);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/dailySchedule");
         dispatcher.forward(request, response);
     }
 }

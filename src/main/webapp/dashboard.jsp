@@ -8,12 +8,12 @@
 	<div id="wrap">
 	<c:import url="jsp/header-tag.jsp" />
     <c:import url="jsp/menu-tag.jsp" />
-
-    <%--<form action="taskList" method="get">--%>
-			<%--<input type="submit" value="Administrative/Office Tasks">--%>
-		<%--</form>--%>
-
     <c:import url="jsp/dashcontent.jsp" />
 	<c:import url="jsp/footer.jsp" />
 </body>
 </html>
+
+
+<%--<form action="taskList" method="get">--%>
+<%--<input type="submit" value="Administrative/Office Tasks">--%>
+<%--</form>--%>

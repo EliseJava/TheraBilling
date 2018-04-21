@@ -2,6 +2,7 @@ package edu.matc.persistence;
 
 import edu.matc.entity.Patient;
 import edu.matc.entity.PatientProcedure;
+import edu.matc.entity.ProcedureCode;
 import edu.matc.test.util.Database;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -29,6 +30,7 @@ class PatientProcedureDaoTest {
      */
     GenericDao genericDao;
     GenericDao genericDao2;
+    GenericDao genericDao3;
 
     /**
      * Sets up. Run sql to recreate the database before each test
@@ -73,42 +75,44 @@ class PatientProcedureDaoTest {
            }
 
     /**
-     * Get all today's appointments
+     * Get all today's appointments today that was not billed yet
      */
     @Test
-    void getDailyAppointments() {
+    void getDailyNotBilledAppointments() {
 
         String    startime = "T00:00:00.000";
         String    endtime  = "T23:59:00.000";
 
-        //LocalDate today = LocalDate.now();
         String date = "2018-02-22";
         LocalDate today = LocalDate.parse(date);
 
         LocalDateTime startdate = LocalDateTime.parse(today + startime);
         LocalDateTime enddate = LocalDateTime.parse(today + endtime);
 
-
         List<PatientProcedure> procedure =
                 (List<PatientProcedure>)genericDao.getProcByDate("appointmentDate", startdate, enddate);
 
-        assertEquals(2, procedure.size());
+        assertEquals(1, procedure.size());
 
         for (PatientProcedure index : procedure) {
-            logger.info("Appointments: " + index);
+            logger.info("Appointments: " + index.getProcedureCode().getUnitPrice());
+            assertEquals(280.00, index.getProcedureCode().getUnitPrice());
         }
     }
 
     /**
-     * patient procedure code is updates successfully.
+     * patient procedure object is updates successfully.
      */
     @Test
     void UpdatedProcedureSuccessfully() {
 
-        int newCode = 888888;
+        //int newCode = 888888;
+        genericDao3 = new GenericDao(ProcedureCode.class);
 
         PatientProcedure procedureToUpdate = (PatientProcedure)genericDao.getById(6);
-        procedureToUpdate.setProcedureCode(newCode);
+        ProcedureCode code = (ProcedureCode)genericDao3.getById(9);
+
+        procedureToUpdate.setProcedureCode(code);
         genericDao.saveOrUpdate(procedureToUpdate);
 
         PatientProcedure changedProcedure = (PatientProcedure)genericDao.getById(6);
@@ -124,10 +128,16 @@ class PatientProcedureDaoTest {
 
         //GenericDao patientUpdate = new GenericDao(Patient.class);
         genericDao2 = new GenericDao(Patient.class);
+        genericDao3 = new GenericDao(ProcedureCode.class);
 
         //get a patient and add a procedure
         Patient patient = (Patient)genericDao2.getById(3);
-        PatientProcedure newProc = new PatientProcedure(777777, LocalDateTime.parse("2018-02-17T10:25:10"), patient);
+
+        //get procedure code object
+        ProcedureCode code = (ProcedureCode)genericDao3.getById(11);
+
+        //create new Procedure
+        PatientProcedure newProc = new PatientProcedure(code, LocalDateTime.parse("2018-02-17T10:25:10"), patient);
         patient.addProcedures(newProc);
 
         //insert the procedure for the patient

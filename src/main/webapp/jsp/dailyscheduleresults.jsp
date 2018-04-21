@@ -11,10 +11,9 @@
 <c:import url="header-tag.jsp" />
 
 
-
 <div class="container-fluid">
     <h2>Patients</h2>
-    <table id="scheduleTable" class="display" cellspacing="0" width="100%">
+    <table id="scheduleTable" class="display" cellspacing="0" width="80%">
         <thead>
         <th>Patient First Name</th>
         <th>Patient Last Name</th>
@@ -24,13 +23,15 @@
         <tbody>
         <c:forEach var="items" items="${schedule}">
             <tr>
-                <form action="billingControl" method="GET">
                     <td>${items.patient.getFirstName()}</td>
                     <td>${items.patient.getLastName()}</td>
                     <td>${items.procedureCode}</td>
                     <td>${items.appointmentDate}</td>
-                    <td><input type="hidden"   name="AppointId"   value=${items.id}><input type="submit" name="checkout"  value="CHECKOUT"></td>
-                </form>
+                    <td><form action="dailySchedule" method="GET">
+                        <input type="hidden" name="AppointId" value=${items.id}>
+                        <input type="submit" name="checkout"  value="CHECKOUT">
+                        </form>
+                    </td>
             </tr>
         </c:forEach>
         </tbody>
