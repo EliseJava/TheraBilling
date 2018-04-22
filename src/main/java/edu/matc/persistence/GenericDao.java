@@ -2,6 +2,7 @@ package edu.matc.persistence;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.ListIterator;
 
 import javax.persistence.criteria.*;
 
@@ -170,6 +171,26 @@ public class GenericDao<T> {
 
         query.select(root).where(builder.between(root.get(column), term1, term2),
                                  builder.isFalse(root.get("billingStatusActive")));
+
+        List<T> list = session.createQuery(query).getResultList();
+        session.close();
+        return list;
+    }
+
+    /**
+     * Gets all Billable appointments for the month
+     *
+     * @return the all Billable entities for the month
+     */
+    public List<T> getProcByBillingMonth(String column, LocalDateTime term1, LocalDateTime term2)  {
+
+        Session          session = getSession();
+        CriteriaBuilder  builder = session.getCriteriaBuilder();
+        CriteriaQuery<T> query   = builder.createQuery(type);
+        Root<T>          root    = query.from(type);
+
+        query.select(root).where(builder.between(root.get(column), term1, term2),
+                builder.isTrue(root.get("billingStatusActive")));
 
         List<T> list = session.createQuery(query).getResultList();
         session.close();

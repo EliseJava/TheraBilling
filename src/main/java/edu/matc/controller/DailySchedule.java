@@ -33,13 +33,11 @@ public class DailySchedule extends HttpServlet {
         final Logger logger = LogManager.getLogger(this.getClass());
         GenericDao genericDao   = new GenericDao(PatientProcedure.class);
 
-        //Check if the CHECKOUT button was submitted
-
+        //Check if the CHECKOUT button was submitted, if so update the billing status
         String functionCheckout = request.getParameter("checkout");
         if (functionCheckout != null) {
 
               int id = Integer.parseInt(request.getParameter("AppointId"));
-              logger.info("DO WE HAVE a appintmentdkjkjdkjd  " + id);
 
               PatientProcedure procedureToUpdate = (PatientProcedure) genericDao.getById(id);
               procedureToUpdate.setBillingStatusActive(true);
