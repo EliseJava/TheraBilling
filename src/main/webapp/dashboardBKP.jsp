@@ -5,22 +5,15 @@
 <c:import url="jsp/head-tag.jsp" />
 
 <body>
-<c:import url="jsp/header-tag.jsp" />
-
-		<div style="float:left; width:50%;">
-
-			<a href="dailySchedule" class="button"><span>Daily Schedule</span></a>
-			<br>
-			<a href="#" class="button"><span>Procedure Codes</span></a>
-		</div>
-
-		<div style="float:left; width:50%;">
-			<a href="patientsShowAll" class="button"><span>Patient Information</span></a>
-			<br>
-			<a href="#" class="button"><span>Billing</span></a>
-		</div>
-
-		<br><br><br>
-	
-<c:import url="jsp/footer.jsp" />
+<div id="wrap">
+	<c:import url="jsp/header-tag.jsp" />
+	<c:import url="jsp/menu-tag.jsp" />
+	<c:import url="jsp/dashcontent.jsp" />
+	<c:import url="jsp/footer.jsp" />
 </body>
+</html>
+
+
+<%--<form action="taskList" method="get">--%>
+<%--<input type="submit" value="Administrative/Office Tasks">--%>
+<%--</form>--%>

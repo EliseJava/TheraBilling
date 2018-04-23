@@ -12,4 +12,5 @@
     <c:import url="jsp/footer.jsp" />
 </div>
 </body>
+
 </html>
