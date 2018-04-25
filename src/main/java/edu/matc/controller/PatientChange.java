@@ -2,8 +2,6 @@ package edu.matc.controller;
 
 import edu.matc.entity.Patient;
 import edu.matc.persistence.GenericDao;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -25,8 +23,6 @@ import java.io.IOException;
 public class PatientChange extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-        final Logger logger = LogManager.getLogger(this.getClass());
 
         GenericDao genericDao = new GenericDao(Patient.class);
 

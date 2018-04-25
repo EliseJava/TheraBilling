@@ -48,10 +48,6 @@ public class PatientAdd extends HttpServlet {
         newPatient.setCity(request.getParameter("addCity"));
         newPatient.setPostalCode(postalCode);
 
-        //add a new patient
-        //int id                  = genericDao.insert(newPatient);
-        //Patient addedPatient    = (Patient)genericDao.getById(id);
-
         String date = request.getParameter("addAppointment");
 
         //get the Physical Therapy Evaluation Procedure Code

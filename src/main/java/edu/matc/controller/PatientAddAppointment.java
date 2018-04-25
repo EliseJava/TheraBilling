@@ -29,8 +29,6 @@ public class PatientAddAppointment extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-        final Logger logger     = LogManager.getLogger(this.getClass());
-
         int id                  = (int) request.getSession().getAttribute("sharedId");
         int newProc             = Integer.parseInt(request.getParameter("addProcCode"));
 

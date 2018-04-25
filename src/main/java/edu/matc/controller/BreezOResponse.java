@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import javax.ws.rs.client.*;
-import javax.ws.rs.core.MediaType;
 
 /**
  * Servlet to call the BreezoMeter Web Service and display the air quality

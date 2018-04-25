@@ -61,13 +61,13 @@ public class Patient {
      * Contructor2: Create a new Patient with values.
      */
     public Patient(String firstName, String lastName, String diagnosis, String referredBy, String streetName, String city, String state, int postalCode) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.diagnosis = diagnosis;
+        this.firstName  = firstName;
+        this.lastName   = lastName;
+        this.diagnosis  = diagnosis;
         this.referredBy = referredBy;
         this.streetName = streetName;
-        this.city = city;
-        this.state = state;
+        this.city       = city;
+        this.state      = state;
         this.postalCode = postalCode;
     }
 

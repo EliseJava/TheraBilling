@@ -1,7 +1,6 @@
 package edu.matc.controller;
 
 import edu.matc.entity.PatientProcedure;
-import edu.matc.entity.ProcedureCode;
 import edu.matc.persistence.GenericDao;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,6 +19,7 @@ import java.util.List;
 
 /**
  * This servlet will pull all the daily appointments.
+ *
  * @author Elise Strauss
  */
 @WebServlet(
