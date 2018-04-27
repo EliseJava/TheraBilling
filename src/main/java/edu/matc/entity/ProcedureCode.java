@@ -27,7 +27,6 @@ public class ProcedureCode {
     @Column(name = "unit_price")
     private float unitPrice;
 
-
     /**
      * Instantiates a new procedure code.
      */
@@ -46,6 +45,7 @@ public class ProcedureCode {
         this.description = description;
         this.unitPrice = price;
     }
+
     /**
      * Gets procedure code id.
      *

@@ -4,16 +4,18 @@
 
 <c:import url="/jsp/head-tag.jsp" />
 
-
 <body>
 <div id="wrap">
     <c:import url="/jsp/header-tag.jsp" />
-    <c:import url="/jsp/breezocontent.jsp" />
-    <c:import url="/jsp/footer.jsp" />
+    <p><a href="/theraBilling/dashboard.jsp">Go Back</a>
+
+    <div class="section">
+        <c:import url="/jsp/procedurecodecontent.jsp" />
+    </div>
 </div>
+        <c:import url="/jsp/footer.jsp" />
 </body>
 </html>
-
 
 
 
