@@ -16,18 +16,17 @@ public class Role {
     @GenericGenerator(name = "native", strategy = "native")
     private int id;
 
+    @Column(name="role_type")
+    private String roleType;
+
+    @Column(name="user_name")
+    private String userName;
+
     @ManyToOne
     @JoinColumn(name = "user_id",
             foreignKey = @ForeignKey(name = "role_user_user_id_fk")
     )
     private User user;
-
-    @Column(name="user_name")
-    private String userName;
-
-
-    @Column(name="role_type")
-    private String roleType;
 
     /**
      * Instantiates a new Role.
@@ -42,10 +41,10 @@ public class Role {
      * @param roleType the role name
      * @param userName the user name
      */
-    public Role(User user, String roleType, String userName) {
-        this.user = user;
+    public Role(String roleType, String userName, User user) {
         this.roleType = roleType;
         this.userName = userName;
+        this.user = user;
     }
 
     /**
@@ -66,6 +65,23 @@ public class Role {
         this.id = id;
     }
 
+    /**
+     * Gets user name.
+     *
+     * @return the user name
+     */
+    public String getUserName() {
+        return userName;
+    }
+
+    /**
+     * Sets user name.
+     *
+     * @param userName the user name
+     */
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
     /**
      * Gets user.
      *

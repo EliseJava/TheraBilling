@@ -18,7 +18,40 @@
 
     <web-resource-collection>
       <web-resource-name>billing</web-resource-name>
-      <url-pattern>/dashboard.jsp</url-pattern>
+        <url-pattern>/dashboard.jsp</url-pattern>
+        <url-pattern>/breezoResponse</url-pattern>
+        <url-pattern>/dailySchedule</url-pattern>
+        <url-pattern>/monthlyBilling</url-pattern>
+        <url-pattern>/patientAdd</url-pattern>
+        <url-pattern>/patientAddAppointment</url-pattern>
+        <url-pattern>/patientChange</url-pattern>
+        <url-pattern>/appointmentChangeDel</url-pattern>
+        <url-pattern>/patientUpdateDelete</url-pattern>
+        <url-pattern>/patientMaintenance</url-pattern>
+        <url-pattern>/patientUpdateDelete</url-pattern>
+        <url-pattern>/patientMaintenance</url-pattern>
+        <url-pattern>/patientShowPatient</url-pattern>
+        <url-pattern>/patientsShowAll</url-pattern>
+        <url-pattern>/procedureCodeDisplay</url-pattern>
+        <url-pattern>/userAdd</url-pattern>
+        <url-pattern>/jsp/addnewuser.jsp</url-pattern>
+        <url-pattern>/jsp/breezocontent.jsp</url-pattern>
+        <url-pattern>/jsp/breezoDisplay.jsp</url-pattern>
+        <url-pattern>/jsp/dailyscheduleresults.jsp </url-pattern>
+        <url-pattern>/jsp/dashcontent.jsp</url-pattern>
+        <url-pattern>/jsp/dashform-tag.jsp</url-pattern>
+        <url-pattern>/jsp/date.jsp</url-pattern>
+        <url-pattern>/jsp/footer.jsp</url-pattern>
+        <url-pattern>/jsp/head.jsp</url-pattern>
+        <url-pattern>/jsp/header-tag.jsp</url-pattern>
+        <url-pattern>/jsp/java-script-table.jsp</url-pattern>
+        <url-pattern>/jsp/monthly_billing.jsp</url-pattern>
+        <url-pattern>/jsp/patientadd.jsp</url-pattern>
+        <url-pattern>/jsp/patientchange.jsp</url-pattern>
+        <url-pattern>/jsp/patientresults.jsp</url-pattern>
+        <url-pattern>/jsp/procedurecodecontent.jsp</url-pattern>
+        <url-pattern>/jsp/procedurecodedisplay.jsp</url-pattern>
+
     </web-resource-collection>
 
     <auth-constraint>

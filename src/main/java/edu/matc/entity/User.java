@@ -27,6 +27,9 @@ public class User {
     @Column(name = "user_name", unique = true, nullable = false)
     private String userName;
 
+    @Column(name = "password")
+    private String password;
+
     /**
      * Instantiates a new User.
      */
@@ -41,10 +44,11 @@ public class User {
      * @param lastName    the last name
      * @param userName    the user name
      */
-    public User(String firstName, String lastName, String userName) {
+    public User(String firstName, String lastName, String userName, String password) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
+        this.password = password;
     }
 
     /**
@@ -117,6 +121,15 @@ public class User {
      */
     public void setId(int id) {
         this.id = id;
+    }
+
+    /**
+     * Sets password.
+     *
+     * @param password
+     */
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override

@@ -7,8 +7,15 @@
 <body>
 <div id="wrap">
 	<c:import url="jsp/header-tag.jsp" />
-    <p><a href="/theraBilling">Home</a>
-	<c:import url="jsp/dashcontent.jsp" />
+
+        <div style="float:left; width:90%;">
+            <a href="/theraBilling">Home</a>
+        </div>
+        <div style="float:left; width:10%;">
+            <a href="userAdd">Add new user</a>
+        </div>
+
+    <c:import url="jsp/dashcontent.jsp" />
 	<c:import url="jsp/footer.jsp" />
 </body>
 </html>
