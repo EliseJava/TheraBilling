@@ -12,12 +12,17 @@
     </form-login-config>
   </login-config>
 
-  <!-- Protect the receptionist of theraBilling from accessing the Billing system. -->
-  <!-- for testing purposes the receptionist will not be able to see the patient search results -->
-  <security-constraint>
+  <error-page>
+        <error-code>403</error-code>
+        <location>/jsp/notauthorized_error.jsp</location>
+  </error-page>
 
+
+    <!-- Protect the receptionist of theraBilling from accessing the Billing system
+         and adding a new user. -->
+  <security-constraint>
     <web-resource-collection>
-      <web-resource-name>billing</web-resource-name>
+      <web-resource-name>everything</web-resource-name>
         <url-pattern>/dashboard.jsp</url-pattern>
         <url-pattern>/breezoResponse</url-pattern>
         <url-pattern>/dailySchedule</url-pattern>
@@ -51,17 +56,56 @@
         <url-pattern>/jsp/patientresults.jsp</url-pattern>
         <url-pattern>/jsp/procedurecodecontent.jsp</url-pattern>
         <url-pattern>/jsp/procedurecodedisplay.jsp</url-pattern>
-
     </web-resource-collection>
-
     <auth-constraint>
       <role-name>owner</role-name>
     </auth-constraint>
-
   </security-constraint>
 
-  <security-role>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>admin</web-resource-name>
+            <url-pattern>/dashboard.jsp</url-pattern>
+            <url-pattern>/breezoResponse</url-pattern>
+            <url-pattern>/dailySchedule</url-pattern>
+            <url-pattern>/patientAdd</url-pattern>
+            <url-pattern>/patientAddAppointment</url-pattern>
+            <url-pattern>/patientChange</url-pattern>
+            <url-pattern>/appointmentChangeDel</url-pattern>
+            <url-pattern>/patientUpdateDelete</url-pattern>
+            <url-pattern>/patientMaintenance</url-pattern>
+            <url-pattern>/patientUpdateDelete</url-pattern>
+            <url-pattern>/patientMaintenance</url-pattern>
+            <url-pattern>/patientShowPatient</url-pattern>
+            <url-pattern>/patientsShowAll</url-pattern>
+            <url-pattern>/procedureCodeDisplay</url-pattern>
+            <url-pattern>/jsp/breezocontent.jsp</url-pattern>
+            <url-pattern>/jsp/breezoDisplay.jsp</url-pattern>
+            <url-pattern>/jsp/dailyscheduleresults.jsp </url-pattern>
+            <url-pattern>/jsp/dashcontent.jsp</url-pattern>
+            <url-pattern>/jsp/dashform-tag.jsp</url-pattern>
+            <url-pattern>/jsp/date.jsp</url-pattern>
+            <url-pattern>/jsp/footer.jsp</url-pattern>
+            <url-pattern>/jsp/head.jsp</url-pattern>
+            <url-pattern>/jsp/header-tag.jsp</url-pattern>
+            <url-pattern>/jsp/java-script-table.jsp</url-pattern>
+            <url-pattern>/jsp/monthly_billing.jsp</url-pattern>
+            <url-pattern>/jsp/patientadd.jsp</url-pattern>
+            <url-pattern>/jsp/patientchange.jsp</url-pattern>
+            <url-pattern>/jsp/patientresults.jsp</url-pattern>
+            <url-pattern>/jsp/procedurecodecontent.jsp</url-pattern>
+            <url-pattern>/jsp/procedurecodedisplay.jsp</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>receptionist</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-role>
     <role-name>owner</role-name>
+  </security-role>
+  <security-role>
+    <role-name>receptionist</role-name>
   </security-role>
 
 </web-app>

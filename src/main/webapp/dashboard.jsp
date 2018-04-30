@@ -7,7 +7,6 @@
 <body>
 <div id="wrap">
 	<c:import url="jsp/header-tag.jsp" />
-
         <div style="float:left; width:90%;">
             <a href="/theraBilling">Home</a>
         </div>
@@ -16,6 +15,7 @@
         </div>
 
     <c:import url="jsp/dashcontent.jsp" />
+</div>
 	<c:import url="jsp/footer.jsp" />
 </body>
 </html>

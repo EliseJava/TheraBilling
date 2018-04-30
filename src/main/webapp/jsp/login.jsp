@@ -8,7 +8,7 @@
 <body>
     <c:import url="header-tag.jsp" />
         <p><a href="/theraBilling">Home</a></p>
-    <c:import url="menu-tag.jsp" />
+    <c:import url="/jsp/menu-tag.jsp" />
     <c:import url="logincontent.jsp" />
     <c:import url="footer.jsp" />
 </body>

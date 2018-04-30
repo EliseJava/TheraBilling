@@ -8,7 +8,6 @@
 
 </head>
 
-
 <body>
 <header>
 <h1>TheraBilling</h1>
@@ -19,8 +18,6 @@
 
 <br>
 <a href="dashboard.jsp">LOGIN</a>
-
-
 
 <form id="breezoResponse" action="breezoResponse" method="get" >
 BreezoMeter lat <input type="text" name="lat"  value="43.073052"   required>

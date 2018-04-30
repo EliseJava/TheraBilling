@@ -29,7 +29,7 @@ public class PatientLetters {
         Patient patient = (Patient) genericDao.getById(1);
         //String output = patient.getNotes();
 
-        jformatoutput = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(patient.getFirstName()) + "]";
+        jformatoutput = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(patient.getFirstName()) + patient.getNotes() + "]";
 
         //return Response.status(200).entity(output).build();
         return Response.ok(jformatoutput, MediaType.APPLICATION_JSON).build();

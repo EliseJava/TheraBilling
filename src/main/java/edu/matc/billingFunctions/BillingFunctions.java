@@ -17,7 +17,6 @@ import java.util.Set;
 /**
  * This class will pull all the Billable appointments for the month selected.
  *
- *  *
  * @author Elise Strauss
  */
 public class BillingFunctions {

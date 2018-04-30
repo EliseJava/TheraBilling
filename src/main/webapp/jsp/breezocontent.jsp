@@ -1,9 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+
 <div id="content">
     <c:choose>
     <c:when test="${datavalid == true}" >
-    <table id="Air Quality" class="display" cellspacing="0" width="80%">
+    <table id="Air Quality" class="display" cellspacing="0" width="40%">
         <tbody>
         <tr><td><h2>Air Quality          </h2></td></tr>
         <tr><td><h4>Country              </h4></td> <td>${country}              </td></tr>
@@ -22,5 +23,8 @@
         </tbody>
     </table>
     </c:when>
+        <c:when test="${datavalid == false}" >
+                <h3>This place does not exist on earth, please try again</h3>
+        </c:when>
     </c:choose>
 </div>

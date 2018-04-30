@@ -8,7 +8,7 @@
 
 <body>
 <c:import url="header-tag.jsp" />
-
+<p><a href="dashboard.jsp">Go Back</a></p>
 
 <div style="float:left; width:20%;">
     <form action="patientChange" method="GET">
@@ -73,10 +73,11 @@
     <h4>Change or Delete an appointment</h4>
         <br>
         <c:forEach var="procedure" items="${patient.treatmentPlan}">
+        <c:if test="${procedure.billingStatusActive == false}">
         <form action="appointmentChangeDel" method="GET">
             <input type="hidden"         name="AppointId"   value=${procedure.id}>
             <br>
-            ${procedure.procedureCode.code}
+                    ${procedure.procedureCode.code}
                     <label>Proc code</label>
                     <select id="ProcCode" name="ProcCode" >
                         <option value = 97001>97001</option>
@@ -94,12 +95,12 @@
                     </select>
 
 
-            <input type="datetime-local" name="AppointDate" value=${procedure.appointmentDate}>
-            <input type="submit" name="change" value="Change">
-            <input type="submit" name="delete" value="Delete">
+                    <input type="datetime-local" name="AppointDate" value=${procedure.appointmentDate}>
+                    <input type="submit" name="change" value="Change">
+                    <input type="submit" name="delete" value="Delete">
             <br>
-        </form>
-
+                    </form>
+        </c:if>
         </c:forEach>
 </div>
 

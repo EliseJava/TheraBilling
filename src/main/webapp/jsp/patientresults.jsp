@@ -9,7 +9,7 @@
 
 <body>
 <c:import url="header-tag.jsp" />
-
+<p><a href="dashboard.jsp">Go Back</a></p>
 
 <div style="float:left; width:50%;">
     <form action="patientMaintenance" method="GET">

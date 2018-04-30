@@ -8,4 +8,3 @@
     <div class="col grid_1_of_4"> <a href="procedureCodeDisplay" class="button"><span>Procedure Codes</span></a> <a href="monthlyBilling" class="button"><span>Billing </span></a></div>
     <div class="col grid_1_of_4"></div>
 </div>
-</div>
