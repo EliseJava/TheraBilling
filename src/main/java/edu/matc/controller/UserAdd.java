@@ -20,7 +20,8 @@ import java.util.Properties;
 
 
 /**
- * A simple servlet to welcome the user.
+ * A servlet to add new users for the application.
+ *
  * @author Elise Strauss
  */
 @WebServlet(

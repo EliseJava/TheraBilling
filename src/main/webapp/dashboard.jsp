@@ -8,7 +8,7 @@
 <div id="wrap">
 	<c:import url="jsp/header-tag.jsp" />
         <div style="float:left; width:90%;">
-            <a href="/theraBilling">Home</a>
+            <a href="index.jsp">Home</a>
         </div>
         <div style="float:left; width:10%;">
             <a href="userAdd">Add new user</a>

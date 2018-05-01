@@ -10,6 +10,8 @@ import java.util.Set;
 
 /**
  * The type Patient.
+ *
+ * @author   Elise Strauss
  */
 @Entity(name = "Patient")
 @Table(name = "patient")

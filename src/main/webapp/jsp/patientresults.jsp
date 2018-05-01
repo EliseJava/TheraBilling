@@ -60,7 +60,7 @@
                 <td>${patient.referredBy}</td>
                 <td>${patient.streetName}</td>
                 <td>${patient.city}</td>
-                <td>${patient.state}</td>
+                <td>${patient.state}</td>`
                 <td>${patient.postalCode}</td>
                 <td>
                     <c:forEach var="procedure" items="${patient.treatmentPlan}">

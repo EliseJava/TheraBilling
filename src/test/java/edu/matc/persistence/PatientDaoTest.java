@@ -20,6 +20,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * This program is testing the PatientDao
+ *
+ * @author   Elise Strauss
  */
 class PatientDaoTest {
 

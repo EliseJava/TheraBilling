@@ -15,7 +15,8 @@ import java.io.IOException;
 
 
 /**
- * A simple servlet to welcome the user.
+ * A servlet to get all the patient info data and pass it on to be displayed.
+ *
  * @author Elise Strauss
  */
 @WebServlet(

@@ -32,11 +32,6 @@ public class MonthlyBilling extends HttpServlet {
 
         List<Patient> monthlyBilling = billing.getMonthlyBillingRecords();
 
-        for (Patient index : monthlyBilling) {
-            logger.info("passing   " + index.getFirstName());
-            logger.info("passing " + index.getTreatmentPlan());
-        }
-
         request.setAttribute("mbilling", monthlyBilling);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/monthly_billing.jsp");
         dispatcher.forward(request, response);

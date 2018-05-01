@@ -14,6 +14,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * This program is testing adding and selecting Users
+ *
+ * @author   Elise Strauss
  */
 class UserRoleDaoTest {
 
@@ -34,7 +36,6 @@ class UserRoleDaoTest {
         Database database = Database.getInstance();
         database.runSQL("cleanpatientdb.sql");
     }
-
 
     /**
      * Verify a user is returned correctly by their id.

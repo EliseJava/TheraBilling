@@ -2,7 +2,6 @@ package edu.matc.controller;
 
 import edu.matc.entity.Patient;
 import edu.matc.persistence.GenericDao;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
-
 /**
- * A simple servlet to welcome the user.
+ * A servlet to get all patient info.
+ *
  * @author Elise Strauss
  */
 @WebServlet(

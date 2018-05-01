@@ -7,7 +7,8 @@
 <body>
 <div id="wrap">
     <c:import url="/jsp/header-tag.jsp" />
-    <p><a href="/theraBilling/dashboard.jsp">Go Back</a>
+    <p><a href="dashboard.jsp">Go Back</a></p>
+
 
     <c:import url="/jsp/dailyschedulecontent.jsp" />
 </div>

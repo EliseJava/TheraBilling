@@ -8,6 +8,8 @@ import java.util.Objects;
 
 /**
  * The type Patient procedures.
+ *
+ * @author   Elise Strauss
  */
 @Entity(name = "PatientProcedures")
 @Table(name = "patientprocedure")

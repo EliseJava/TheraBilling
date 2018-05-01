@@ -20,6 +20,8 @@ import org.hibernate.Transaction;
 /**
  * A generic DAO somewhat inspired by http://rodrigouchoa.wordpress.com.  This DAO will serve
  * all the database needs for TheraBilling application
+ *
+ * @author   Elise Strauss
  */
 public class GenericDao<T> {
 

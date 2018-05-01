@@ -17,6 +17,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  * Procedure codes are directly entered into the system and stays static.
  * Project Phase II will implement a Medical billing API to maintain
  * procedure codes on a yearly basis.
+ *
+ * @author   Elise Strauss
  */
 class ProcedureCodeDaoTest {
 

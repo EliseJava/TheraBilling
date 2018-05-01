@@ -17,6 +17,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * This program is testing the PatientProcedureDao
+ *
+ * @author   Elise Strauss
  */
 class PatientProcedureDaoTest {
 
@@ -24,6 +26,7 @@ class PatientProcedureDaoTest {
 
     /**
      * The patient dao.
+     *
      */
     GenericDao genericDao;
     GenericDao genericDao2;
@@ -46,7 +49,7 @@ class PatientProcedureDaoTest {
     @Test
     void getPatientProcedureByIdIsSuccessful() {
         PatientProcedure procedure = (PatientProcedure)genericDao.getById(1);
-        assertEquals(97001, procedure.getProcedureCode());
+        assertEquals(97001, procedure.getProcedureCode().getCode());
     }
 
     /**
@@ -103,7 +106,6 @@ class PatientProcedureDaoTest {
     @Test
     void UpdatedProcedureSuccessfully() {
 
-        //int newCode = 888888;
         genericDao3 = new GenericDao(ProcedureCode.class);
 
         PatientProcedure procedureToUpdate = (PatientProcedure)genericDao.getById(6);
@@ -114,7 +116,7 @@ class PatientProcedureDaoTest {
 
         PatientProcedure changedProcedure = (PatientProcedure)genericDao.getById(6);
         logger.info("Code should be updated {}", changedProcedure.getProcedureCode());
-        assertEquals(procedureToUpdate, changedProcedure);
+        assertEquals(procedureToUpdate.getProcedureCode().getCode(), changedProcedure.getProcedureCode().getCode());
     }
 
     /**
@@ -143,7 +145,7 @@ class PatientProcedureDaoTest {
 
         //test that the correct procedure got added to the intended patient
         PatientProcedure testProc = (PatientProcedure)genericDao.getById(id);
-        assertEquals(newProc, testProc);
+        assertEquals(newProc.getProcedureCode().getCode(), testProc.getProcedureCode().getCode());
 
         //test that nothing changed for the patient
         Patient patientWithProc = (Patient)genericDao2.getById(3);
