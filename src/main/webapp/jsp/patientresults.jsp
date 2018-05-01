@@ -65,7 +65,12 @@
                 <td>
                     <c:forEach var="procedure" items="${patient.treatmentPlan}">
                         <ol ul style="list-style-type:square">
-                            <li> ${procedure.appointmentDate} / ${procedure.procedureCode.code} / ${procedure.procedureCode.description} </li>
+                            <c:if test="${procedure.billingStatusActive == true}">
+                                <li style="color: #036DA7"> ${procedure.appointmentDate} / ${procedure.procedureCode.code} / ${procedure.procedureCode.description} </li>
+                            </c:if>
+                            <c:if test="${procedure.billingStatusActive == false}">
+                                <li> ${procedure.appointmentDate} / ${procedure.procedureCode.code} / ${procedure.procedureCode.description} </li>
+                            </c:if>
                         </ol>
 
                     </c:forEach>

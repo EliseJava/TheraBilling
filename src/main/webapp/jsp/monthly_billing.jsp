@@ -1,29 +1,28 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <c:set var="title" value="Billing Statements" />
 <%@include file="head.jsp"%>
 
-<p>
+
 
 <c:set var="grosstotal" value="0.00"/>
-<c:forEach var="billings" items="${billing}">
+<c:forEach var="monthbill" items="${mbilling}">
     <H4>Billing Statement from TheraBilling</H4>
     <c:set var="total" value="0.00"/>
     <section>
-            ${billings.firstName}  ${billings.lastName}
-        <br>${billings.streetName}
-        <br>${billings.city}
-        <br>${billings.state}
-        <br>${billings.postalCode}
+            ${monthbill.firstName}  ${monthbill.lastName}
+        <br>${monthbill.streetName}
+        <br>${monthbill.city}
+        <br>${monthbill.state}
+        <br>${monthbill.postalCode}
     </section>
     <br>
     <p>
-        Diagnosis: ${billings.diagnosis}
+        Diagnosis: ${monthbill.diagnosis}
     </p>
 
     <table cellspacing="0" width="70%">
@@ -31,16 +30,18 @@
     <th>Procedure Code</th>
     <th>Description</th>
     <th>Billed Amount</th>
-    <c:forEach var="proc" items="${billings.treatmentPlan}">
+        
+        ${monthbill.treatmentPlan.size()}
+    <c:forEach var="bproc" items="${monthbill.treatmentPlan}">
             <tr>
-                <td>${proc.appointmentDate}</td>
-                <td>${proc.procedureCode.code}</td>
-                <td>${proc.procedureCode.description}</td>
+                <td>${bproc.appointmentDate}</td>
+                <td>${bproc.procedureCode.code}</td>
+                <td>${bproc.procedureCode.description}</td>
                 <td><fmt:setLocale value = "en_US"/>
-                    <fmt:formatNumber value = "${proc.procedureCode.unitPrice}" type = "currency"/></td>
+                    <fmt:formatNumber value = "${bproc.procedureCode.unitPrice}" type = "currency"/></td>
 
             </tr>
-            <c:set var="total" value="${total + proc.procedureCode.unitPrice}"/>
+            <c:set var="total" value="${total + bproc.procedureCode.unitPrice}"/>
 
     </c:forEach>
             <tr>

@@ -2,6 +2,8 @@ package edu.matc.controller;
 
 import edu.matc.billingFunctions.BillingFunctions;
 import edu.matc.entity.Patient;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -24,11 +26,18 @@ public class MonthlyBilling extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+        final Logger logger = LogManager.getLogger(this.getClass());
+
         BillingFunctions billing = new BillingFunctions();
 
         List<Patient> monthlyBilling = billing.getMonthlyBillingRecords();
 
-        request.setAttribute("billing", monthlyBilling);
+        for (Patient index : monthlyBilling) {
+            logger.info("passing   " + index.getFirstName());
+            logger.info("passing " + index.getTreatmentPlan());
+        }
+
+        request.setAttribute("mbilling", monthlyBilling);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/jsp/monthly_billing.jsp");
         dispatcher.forward(request, response);
     }

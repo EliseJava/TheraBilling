@@ -47,25 +47,26 @@ public class BillingFunctions {
 
             for (PatientProcedure index2 : proc ) {
                 if (index2.isBillingStatusActive()                       &&
-                   (!index2.getAppointmentDate().isBefore(startDate)     &&
-                   (!index2.getAppointmentDate().isAfter(endDate)))) {
+                        (!index2.getAppointmentDate().isBefore(startDate)     &&
+                                (!index2.getAppointmentDate().isAfter(endDate)))) {
 
-                    proccopy.add(index2);
+                   proccopy.add(index2);
                 }
             }
 
             if (!proccopy.isEmpty()) {
 
+                //assign the current patient index to this Patient object
                 billableProcedure = index;
+                Set<PatientProcedure> emptylist = new HashSet<>();
+                billableProcedure.setTreatmentPlan(emptylist);
 
                 for (PatientProcedure i : proccopy) {
                     billableProcedure.addProcedures(i);
                     logger.info("Procedure code: " + i.getProcedureCode().getCode());
                 }
-
                 billingIncome.add(billableProcedure);
             }
-
             proccopy.clear();
         }
         return billingIncome;
