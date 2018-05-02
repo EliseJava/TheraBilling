@@ -24,14 +24,14 @@ public class BillingFunctions {
     private final Logger logger = LogManager.getLogger(this.getClass());
     private GenericDao genericDao   = new GenericDao(Patient.class);
 
-    private String    startime      = "T00:00:00.000";
-    private String    endtime       = "T23:59:00.000";
+    private static final String STARTTIME = "T00:00:00.000";
+    private static final String   ENDTIME = "T23:59:00.000";
 
     private LocalDate firstDayofCurrentMonth    = LocalDate.now().with(TemporalAdjusters.firstDayOfMonth());
     private LocalDate lastDayofCurrentMonth     = LocalDate.now().with(TemporalAdjusters.lastDayOfMonth());
 
-    private LocalDateTime startDate = LocalDateTime.parse(firstDayofCurrentMonth + startime);
-    private LocalDateTime endDate   = LocalDateTime.parse(lastDayofCurrentMonth + endtime);
+    private LocalDateTime startDate = LocalDateTime.parse(firstDayofCurrentMonth + STARTTIME);
+    private LocalDateTime endDate   = LocalDateTime.parse(lastDayofCurrentMonth + ENDTIME);
 
     private List<Patient> billing       = (List<Patient>)genericDao.getAllByTable();
     private List<Patient> billingIncome = new ArrayList<>();
